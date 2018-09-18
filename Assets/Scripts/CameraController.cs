@@ -1,86 +1,149 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class CameraController : MonoBehaviour
 {
-    private Vector3 movement = Vector3.zero;
+    DeviceType deviceType = DeviceType.Desktop;
 
+    private Vector3 previousPos;
+
+    [Header("The left and right most positions the camera is allowed to be at:")]
     [SerializeField]
-    private float maxCamSpeed = 5f, camAcceleration = 0.05f;
+    private Transform leftBoundary, rightBoundary;
+
 
     private bool moveLeft = true, moveRight = true;
+
+
+
+
+
+
+
 
 
     // Use this for initialization
     void Start ()
     {
-		
-	}
+        previousPos = transform.position;
+
+        deviceType = SystemInfo.deviceType;
+
+    }
 	
+
+
+
+
+
+
+
+
 	// Update is called once per frame
 	void Update ()
     {
-        Move();
-        UpdateCameraPosition();
+        switch(deviceType)
+        {
+            case DeviceType.Desktop:
+                DragCameraPC();
+                break;
+
+            case DeviceType.Handheld:
+                DragCameraAndroid();
+                break;
+        }
 	}
 
-    // this method takes the players inputs in and moves the camera horizontally
-    private void Move()
-    {
-        if (Input.GetAxis("Mouse ScrollWheel") > 0f && moveRight == true)
+
+
+
+
+
+
+
+    private void DragCameraAndroid()
+    { 
+        // if one finger is touching the screen
+        if(Input.touchCount == 1)
         {
-            movement = new Vector3(Mathf.Lerp(movement.x, maxCamSpeed, camAcceleration), movement.y, movement.z);
+            // if that finger has moved
+            if (Input.GetTouch(0).phase == TouchPhase.Moved)
+            {
+                // find worldspace of the finger touching the screen
+                Vector3 newPos = new Vector3(Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position).x, transform.position.y, transform.position.z);
+
+                DragCamToPosition(newPos);
+            }
+
+            // set previous position to the now current position
+            previousPos = new Vector3(Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position).x, transform.position.y, transform.position.z);
+        }
+    } 
+
+
+
+
+
+
+
+
+
+
+
+
+    private void DragCameraPC()
+    {
+        // if the mouse button is being held down
+        if (Input.GetMouseButton(0))
+        {
+            // find worldspace of the mouse
+            Vector3 newPos = new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, transform.position.y, transform.position.z);
+
+            DragCamToPosition(newPos);
         }
 
-        if (Input.GetAxis("Mouse ScrollWheel") < 0f && moveLeft == true)
-        {
-            movement = new Vector3(Mathf.Lerp(movement.x, -maxCamSpeed, camAcceleration), movement.y, movement.z);
-        }
+        // set previous position to the now current position
+        previousPos = new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, transform.position.y, transform.position.z);
     }
 
 
-    void UpdateCameraPosition()
-    {
-        transform.position += (movement * Time.deltaTime);
 
-        if(moveLeft == false || moveRight == false)
-        {
-            movement = Vector3.zero;
-        }
-        else
-        {
-            movement = new Vector3(Mathf.Lerp(movement.x, 0f, camAcceleration), movement.y, movement.z);
-        }
-        
+
+
+
+
+
+
+
+
+
+
+    private void DragCamToPosition(Vector3 newPos)
+    {
+        // translate the camera's position between the new position and the cameras previous position
+        transform.Translate(-(newPos - previousPos));
+
+        DetectCameraBoundaries();
     }
 
 
 
 
-    private void OnTriggerEnter2D(Collider2D collision)
+
+
+    private void DetectCameraBoundaries()
     {
-        if(collision.CompareTag("CameraBoundaryPlayer"))
+        if(transform.position.x < leftBoundary.transform.position.x)
         {
-            moveLeft = false;
+            transform.position = new Vector3(leftBoundary.transform.position.x, transform.position.y, transform.position.z);
         }
 
-        if (collision.CompareTag("CameraBoundaryEnemy"))
+        if (transform.position.x > rightBoundary.transform.position.x)
         {
-            moveRight = false;
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.CompareTag("CameraBoundaryPlayer"))
-        {
-            moveLeft = true;
-        }
-
-        if (collision.CompareTag("CameraBoundaryEnemy"))
-        {
-            moveRight = true;
+            transform.position = new Vector3(rightBoundary.transform.position.x, transform.position.y, transform.position.z);
         }
     }
 }
