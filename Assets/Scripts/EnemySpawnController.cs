@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraMovement : MonoBehaviour {
+public class EnemySpawnController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
