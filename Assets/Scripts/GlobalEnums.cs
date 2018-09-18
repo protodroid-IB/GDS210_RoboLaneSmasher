@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum Commander { Player, Enemy };
+
 public enum WeightClass { Light, Medium, Heavy };
 
 public enum UnitType { Melee, Ranged, Flying };
