@@ -69,6 +69,8 @@ public class BaseUnit : MonoBehaviour
 
     private Animator unitAnimator;
 
+    private bool animationSet = false;
+
 
 
 
@@ -120,8 +122,6 @@ public class BaseUnit : MonoBehaviour
         
         if(CheckAttackingRange() == true)
         {
-            Debug.Log("Attack!");
-
             Attack();
         }
 	}
@@ -132,20 +132,19 @@ public class BaseUnit : MonoBehaviour
 
     private void Move()
     {
+        if (animationSet == false)
+        {
+            unitAnimator.SetTrigger("Move");
+            animationSet = true;
+        }
+
         transform.position += transform.right * moveSpeed * Time.deltaTime;
 
         if(CheckStoppingRange() == true)
         {
             unitState = UnitStates.Idle;
+            animationSet = false;
         }
-
-        if (attacking == false)
-        {
-            unitAnimator.SetBool("Move", true);
-            unitAnimator.SetBool("Attack", false);
-        }
-
-
     }
 
 
@@ -153,15 +152,16 @@ public class BaseUnit : MonoBehaviour
 
     private void Idle()
     {
-        if(CheckStoppingRange() == false)
+        if (animationSet == false)
         {
-            unitState = UnitStates.Move;
+            unitAnimator.SetTrigger("Idle");
+            animationSet = true;
         }
 
-        if (attacking == false)
+        if (CheckStoppingRange() == false)
         {
-            unitAnimator.SetBool("Idle", true);
-            unitAnimator.SetBool("Attack", false);
+            unitState = UnitStates.Move;
+            animationSet = false;
         }
     }
 
@@ -172,22 +172,37 @@ public class BaseUnit : MonoBehaviour
 
     private void Attack()
     {
-        if(attackTimer == 0)
-        {
-            attacking = true;
-            unitAnimator.SetBool("Attack", true);
-            unitAnimator.SetBool("Move", false);
-            unitAnimator.SetBool("Idle", false);
-        }
 
-        if (unitAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.9f && attacking == true)
+        
+        if (attackTimer == 0)
         {
-            attacking = false;
+            Debug.Log("Attack!");
+            attacking = true;
+
+            unitAnimator.SetTrigger("Attack");
+            animationSet = false;
         }
 
         attackTimer += Time.deltaTime;
 
-        if (attackTimer >= attackRate) attackTimer = 0f;
+        Debug.Log("AttackTimer: " + attackTimer + "\t AttackRate: " + attackRate);
+
+        if (attackTimer >= attackRate)
+        {
+            attackTimer = 0f;
+        }
+        else
+        {
+            if(CheckStoppingRange())
+            {
+                unitState = UnitStates.Idle;
+            }
+            else
+            {
+                unitState = UnitStates.Move;
+            }
+        }
+
     }
 
 
@@ -214,8 +229,12 @@ public class BaseUnit : MonoBehaviour
             if(targetUnit == null)
             {
                 targetUnit = hit.transform.gameObject;
+                //Debug.Log("Hit the collidable object " + hit.collider.name);
+            }
 
-                if(targetUnit.transform.tag == "Unit")
+            if (targetUnit != null)
+            {
+                if (targetUnit.transform.tag == "Unit")
                 {
                     if (hit.distance <= attackingRange)
                     {
@@ -223,8 +242,6 @@ public class BaseUnit : MonoBehaviour
                     }
 
                 }
-
-                //Debug.Log("Hit the collidable object " + hit.collider.name);
             }
         }
         else
@@ -252,7 +269,7 @@ public class BaseUnit : MonoBehaviour
 
         if (hit.collider)
         {
-            Debug.DrawLine(raycastOrigin.position, hit.point, Color.red);
+            //Debug.DrawLine(raycastOrigin.position, hit.point, Color.red);
 
             if (hit.transform.tag == "Unit")
             {

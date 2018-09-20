@@ -2384,6 +2384,11 @@ Prefab:
       propertyPath: commander
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114715589266366472, guid: ca6d81cabece6944b9b7bf908185a708,
+        type: 2}
+      propertyPath: hitPerSecond
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ca6d81cabece6944b9b7bf908185a708, type: 2}
   m_IsPrefabAsset: 0
@@ -3108,6 +3113,16 @@ Prefab:
     - target: {fileID: 4270703940685746, guid: ca6d81cabece6944b9b7bf908185a708, type: 2}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114715589266366472, guid: ca6d81cabece6944b9b7bf908185a708,
+        type: 2}
+      propertyPath: attackingRange
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 114715589266366472, guid: ca6d81cabece6944b9b7bf908185a708,
+        type: 2}
+      propertyPath: hitPerSecond
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ca6d81cabece6944b9b7bf908185a708, type: 2}
