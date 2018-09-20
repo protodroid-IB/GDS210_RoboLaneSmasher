@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class BaseUnit : MonoBehaviour
 {
+    [Header("CHOOSE THE COMMANDER: ")]
     [SerializeField]
     private Commander commander = Commander.Player;
 
+    [Space(5)]
+    [Header("RAYCAST DETAILS: ")]
     [SerializeField]
     private Transform raycastOrigin;
 
@@ -16,8 +19,41 @@ public class BaseUnit : MonoBehaviour
     [SerializeField]
     private float stoppingDistance = 3f, attackingRange = 1.5f;
 
+
+    [Space(5)]
+    [Header("UNIT STATISTICS")]
+    [Space(1)]
+
+    [SerializeField]
+    private float health;
+
     [SerializeField]
     private float moveSpeed = 2f;
+
+    [SerializeField]
+    private float damagePerHit;
+
+    [SerializeField]
+    private float hitPerSecond;
+
+    [SerializeField]
+    private float buildTime;
+
+    [SerializeField]
+    private float buildCost;
+
+    [SerializeField]
+    private float scrapDrop;
+
+    [SerializeField]
+    private float expDrop;
+
+
+
+
+
+
+
 
     private UnitStates unitState = UnitStates.Move;
 
@@ -25,7 +61,25 @@ public class BaseUnit : MonoBehaviour
 
     private bool attacking = false;
 
+    private float attackTimer = 0f;
+
+    private float attackRate;
+
     private GameObject targetUnit = null;
+
+    private Animator unitAnimator;
+
+
+
+
+
+
+    private void Awake()
+    {
+        unitAnimator = GetComponent<Animator>();
+    }
+
+
 
 
     private void Start()
@@ -38,7 +92,12 @@ public class BaseUnit : MonoBehaviour
         {
             attackLayerMask = 1 << 10;
         }
+
+        attackRate = 1f / hitPerSecond;
     }
+
+
+
 
 
     // Update is called once per frame
@@ -63,7 +122,7 @@ public class BaseUnit : MonoBehaviour
         {
             Debug.Log("Attack!");
 
-            // DO ATTACK STUFF HERE!!!
+            Attack();
         }
 	}
 
@@ -80,7 +139,17 @@ public class BaseUnit : MonoBehaviour
             unitState = UnitStates.Idle;
         }
 
+        if (attacking == false)
+        {
+            unitAnimator.SetBool("Move", true);
+            unitAnimator.SetBool("Attack", false);
+        }
+
+
     }
+
+
+
 
     private void Idle()
     {
@@ -88,7 +157,48 @@ public class BaseUnit : MonoBehaviour
         {
             unitState = UnitStates.Move;
         }
+
+        if (attacking == false)
+        {
+            unitAnimator.SetBool("Idle", true);
+            unitAnimator.SetBool("Attack", false);
+        }
     }
+
+
+
+
+
+
+    private void Attack()
+    {
+        if(attackTimer == 0)
+        {
+            attacking = true;
+            unitAnimator.SetBool("Attack", true);
+            unitAnimator.SetBool("Move", false);
+            unitAnimator.SetBool("Idle", false);
+        }
+
+        if (unitAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.9f && attacking == true)
+        {
+            attacking = false;
+        }
+
+        attackTimer += Time.deltaTime;
+
+        if (attackTimer >= attackRate) attackTimer = 0f;
+    }
+
+
+
+
+
+
+
+
+
+
 
 
     private bool CheckAttackingRange()
@@ -114,7 +224,7 @@ public class BaseUnit : MonoBehaviour
 
                 }
 
-                Debug.Log("Hit the collidable object " + hit.collider.name);
+                //Debug.Log("Hit the collidable object " + hit.collider.name);
             }
         }
         else
@@ -154,8 +264,13 @@ public class BaseUnit : MonoBehaviour
                 }
             }
         }
+
         return stop;
     }
+
+
+
+
 
     public void SetCommander(Commander inCommander)
     {
