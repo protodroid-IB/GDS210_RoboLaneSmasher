@@ -6,6 +6,7 @@ public class PlayerSpawnController : MonoBehaviour
 {
 
     private GameController gameController;
+    private ResourceController resourceController;
 
     private UnitDatabase unitDatabase;
 
@@ -13,12 +14,13 @@ public class PlayerSpawnController : MonoBehaviour
     private Transform spawnPos, playerUnitsHierarchy;
 
 
+
     // Use this for initialization
     void Start ()
     {
         gameController = GameObject.FindWithTag("GameController").GetComponent<GameController>();
+        resourceController = GameObject.FindWithTag("GameController").GetComponent<ResourceController>();
         unitDatabase = GetComponent<UnitDatabase>();
-
     }
 	
 	// Update is called once per frame
@@ -31,20 +33,7 @@ public class PlayerSpawnController : MonoBehaviour
 
     public void SpawnMeleeUnit()
     {
-        switch(gameController.GetPlayerWeightClass())
-        {
-            case WeightClass.Light:
-                CreateUnit(gameController.GetPlayerWeightClass(), UnitType.Melee);
-                break;
-
-            case WeightClass.Medium:
-
-                break;
-
-            case WeightClass.Heavy:
-
-                break;
-        }
+        CreateUnit(gameController.GetPlayerWeightClass(), UnitType.Melee);
     }
 
 
@@ -52,7 +41,22 @@ public class PlayerSpawnController : MonoBehaviour
     private void CreateUnit(WeightClass inClass, UnitType inType)
     {
         Unit newUnit = unitDatabase.FindUnit(inClass, inType);
-        GameObject newUnitGO = Instantiate(newUnit.prefab, spawnPos.position, Quaternion.identity, playerUnitsHierarchy);
-        gameController.AddPlayerUnit(newUnitGO);
+
+        if(CanAfford(newUnit.prefab.GetComponent<BaseUnit>().GetBuildCost()))
+        {
+            GameObject newUnitGO = Instantiate(newUnit.prefab, spawnPos.position, Quaternion.identity, playerUnitsHierarchy);
+            gameController.AddPlayerUnit(newUnitGO);
+        }   
+    }
+
+    private bool CanAfford(int inCost)
+    {
+        if(inCost <= resourceController.GetPlayerScrap())
+        {
+            resourceController.SubtractPlayerScrap(inCost);
+            return true;
+        }
+
+        return false;
     }
 }

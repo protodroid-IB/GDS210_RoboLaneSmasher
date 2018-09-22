@@ -13,18 +13,17 @@ public class GameController : MonoBehaviour
 
 
 
-
     // Use this for initialization
-    void Start () {
-		
+    void Start ()
+    {
+
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+    {
 		
 	}
-
-
 
 
 
@@ -39,6 +38,31 @@ public class GameController : MonoBehaviour
     }
 
 
+    public void AdvancePlayerWeightClass()
+    {
+        if(playerWeightClass == WeightClass.Light)
+        {
+            playerWeightClass = WeightClass.Medium;
+        }
+        else if(playerWeightClass == WeightClass.Medium)
+        {
+            playerWeightClass = WeightClass.Heavy;
+        }
+    }
+
+    public void AdvanceEnemyWeightClass()
+    {
+        if (enemyWeightClass == WeightClass.Light)
+        {
+            enemyWeightClass = WeightClass.Medium;
+        }
+        else if (enemyWeightClass == WeightClass.Medium)
+        {
+            enemyWeightClass = WeightClass.Heavy;
+        }
+    }
+
+
 
 
 
@@ -46,25 +70,25 @@ public class GameController : MonoBehaviour
     public void AddPlayerUnit(GameObject inUnit)
     {
         playerUnits.Add(inUnit);
-        PrintGOList(Commander.Player, playerUnits);
+        //PrintGOList(Commander.Player, playerUnits);
     }
 
     public void RemovePlayerUnit(GameObject inUnit)
     {
         playerUnits.Remove(inUnit);
-        PrintGOList(Commander.Player, playerUnits);
+        //PrintGOList(Commander.Player, playerUnits);
     }
 
     public void AddEnemyUnit(GameObject inUnit)
     {
         enemyUnits.Add(inUnit);
-        PrintGOList(Commander.Enemy, enemyUnits);
+        //PrintGOList(Commander.Enemy, enemyUnits);
     }
 
     public void RemoveEnemyUnit(GameObject inUnit)
     {
         enemyUnits.Remove(inUnit);
-        PrintGOList(Commander.Enemy, enemyUnits);
+        //PrintGOList(Commander.Enemy, enemyUnits);
     }
 
 

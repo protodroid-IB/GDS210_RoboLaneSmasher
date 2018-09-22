@@ -349,8 +349,8 @@ MonoBehaviour:
   damagePerHit: 10
   hitPerSecond: 1
   buildTime: 2
-  buildCost: 50
-  scrapDrop: 50
+  buildCost: 25
+  scrapDrop: 25
   expDrop: 100
 --- !u!114 &114981459810012968
 MonoBehaviour:

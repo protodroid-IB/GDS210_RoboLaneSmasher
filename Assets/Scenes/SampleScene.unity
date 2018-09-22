@@ -315,7 +315,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: 0 / 2000
+  m_text: 200
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 20ba25422b66e2d44a07cfc7b7896c17, type: 2}
@@ -383,10 +383,10 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 43556051}
-    characterCount: 8
+    characterCount: 3
     spriteCount: 0
-    spaceCount: 2
-    wordCount: 2
+    spaceCount: 0
+    wordCount: 1
     linkCount: 0
     lineCount: 1
     pageCount: 1
@@ -1853,7 +1853,7 @@ MonoBehaviour:
   m_text: 0 / 2000
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2100000, guid: 20ba25422b66e2d44a07cfc7b7896c17, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: 5bdb0d9d20343dc409866b417f957090, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3018,6 +3018,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a8e03aaf5e39ea4c80b17f0ae074e00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerStartScrap: 200
+  enemyStartScrap: 150
+  scrapValue: {fileID: 43556051}
 --- !u!1 &1514482538
 GameObject:
   m_ObjectHideFlags: 0

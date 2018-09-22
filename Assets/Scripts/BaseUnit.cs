@@ -5,6 +5,7 @@ using UnityEngine;
 public class BaseUnit : MonoBehaviour
 {
     private GameController gameController;
+    private ResourceController resourceController;
 
     private UnitStates unitState = UnitStates.Move; // the current state of the unit
 
@@ -78,13 +79,13 @@ public class BaseUnit : MonoBehaviour
     private float buildTime;
 
     [SerializeField]
-    private float buildCost;
+    private int buildCost;
 
     [SerializeField]
-    private float scrapDrop;
+    private int scrapDrop;
 
     [SerializeField]
-    private float expDrop;
+    private int expDrop;
 
 
 
@@ -108,6 +109,7 @@ public class BaseUnit : MonoBehaviour
     {
         unitAnimator = GetComponent<Animator>(); // grab the animator 
         gameController = GameObject.FindWithTag("GameController").GetComponent<GameController>();
+        resourceController = GameObject.FindWithTag("GameController").GetComponent<ResourceController>();
     }
 
 
@@ -301,8 +303,6 @@ public class BaseUnit : MonoBehaviour
 
 
         // DEATH STUFF HERE!!!
-        
-
     }
 
 
@@ -437,16 +437,23 @@ public class BaseUnit : MonoBehaviour
         //Debug.Log("HEALTH: " + currentHealth);
     }
 
+    public int GetBuildCost()
+    {
+        return buildCost;
+    }
+
 
     private void OnDestroy()
     {
         if(commander == Commander.Player)
         {
             gameController.RemovePlayerUnit(this.gameObject);
+            resourceController.AddEnemyScrap(scrapDrop);
         }
         else
         {
             gameController.RemoveEnemyUnit(this.gameObject);
+            resourceController.AddPlayerScrap(scrapDrop);
         }
     }
 
