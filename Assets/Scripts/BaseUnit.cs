@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class BaseUnit : MonoBehaviour
 {
+    private GameController gameController;
+
     private UnitStates unitState = UnitStates.Move; // the current state of the unit
 
 
@@ -104,7 +106,8 @@ public class BaseUnit : MonoBehaviour
 
     private void Awake()
     {
-        unitAnimator = GetComponent<Animator>(); // grab the animator     
+        unitAnimator = GetComponent<Animator>(); // grab the animator 
+        gameController = GameObject.FindWithTag("GameController").GetComponent<GameController>();
     }
 
 
@@ -154,22 +157,33 @@ public class BaseUnit : MonoBehaviour
                 Idle();
                 break;
 
+            case UnitStates.Death:
+                Death();
+                break;
+
             default:
                 Idle();
                 break;
         }
-        
-        // if the unit is within its attacking range of an opposing unit
-        if(CheckAttackingRange() == true)
+
+
+
+
+        // if this unit is still alive
+        if (!CheckDead())
         {
-            // try to attack
-            Attack();
-        }  
-        // if the unit is not within attacking range of an opposing unit, set the target unit variables to null
-        else
-        {
-            targetUnitGO = null;
-            targetUnit = null;
+            // if the unit is within its attacking range of an opposing unit
+            if (CheckAttackingRange() == true)
+            {
+                // try to attack
+                Attack();
+            }
+            // if the unit is not within attacking range of an opposing unit, set the target unit variables to null
+            else
+            {
+                targetUnitGO = null;
+                targetUnit = null;
+            }
         }
 	}
 
@@ -185,12 +199,21 @@ public class BaseUnit : MonoBehaviour
         // move the unit in world space
         transform.position += transform.right * moveSpeed * Time.deltaTime;
 
-        // if there is another unit blocking this units path, change the state of this unit to idle (stops this unit moving)
-        if(CheckStoppingRange() == true)
+
+        // if this unit is alive
+        if (!CheckDead())
         {
-            unitState = UnitStates.Idle;
+            // if there is another unit blocking this units path, change the state of this unit to idle (stops this unit moving)
+            if (CheckStoppingRange() == true)
+            {
+                unitState = UnitStates.Idle;
+            }
         }
+        else unitState = UnitStates.Death;
     }
+
+
+
 
 
 
@@ -200,12 +223,22 @@ public class BaseUnit : MonoBehaviour
         // start playing the idle animation
         unitAnimator.SetTrigger("Idle");
 
-        // if there is no other unit blocking this units path, change the state of this unit to move (starts this unit moving)
-        if (CheckStoppingRange() == false)
+        // if this unit is alive
+        if (!CheckDead())
         {
-            unitState = UnitStates.Move;
+            // if there is no other unit blocking this units path, change the state of this unit to move (starts this unit moving)
+            if (CheckStoppingRange() == false)
+            {
+                unitState = UnitStates.Move;
+            }
         }
+        else unitState = UnitStates.Death;
+        
     }
+
+
+
+
 
 
 
@@ -255,6 +288,34 @@ public class BaseUnit : MonoBehaviour
 
 
 
+
+
+
+    private void Death()
+    {
+        // THIS IS FOR TESTING PURPOSES
+        unitAnimator.speed = 0;
+        Invoke("Kill", 0.25f);
+        // END TEST
+
+
+
+        // DEATH STUFF HERE!!!
+        
+
+    }
+
+
+    // if this unit is dead
+    private bool CheckDead()
+    {
+        if(currentHealth <= 0)
+        {
+            return true;
+        }
+
+        return false;
+    }
 
 
 
@@ -338,6 +399,13 @@ public class BaseUnit : MonoBehaviour
     }
 
 
+    private void Kill()
+    {
+        
+        Destroy(this.gameObject);
+    } 
+
+
 
 
     // sets the commander of this unit
@@ -366,8 +434,20 @@ public class BaseUnit : MonoBehaviour
 
         if (currentHealth <= 0) currentHealth = 0;
 
-        Debug.Log("HEALTH: " + currentHealth);
+        //Debug.Log("HEALTH: " + currentHealth);
     }
 
-    
+
+    private void OnDestroy()
+    {
+        if(commander == Commander.Player)
+        {
+            gameController.RemovePlayerUnit(this.gameObject);
+        }
+        else
+        {
+            gameController.RemoveEnemyUnit(this.gameObject);
+        }
+    }
+
 }

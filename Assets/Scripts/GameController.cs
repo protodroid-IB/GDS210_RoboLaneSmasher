@@ -46,21 +46,36 @@ public class GameController : MonoBehaviour
     public void AddPlayerUnit(GameObject inUnit)
     {
         playerUnits.Add(inUnit);
+        PrintGOList(Commander.Player, playerUnits);
     }
 
     public void RemovePlayerUnit(GameObject inUnit)
     {
         playerUnits.Remove(inUnit);
+        PrintGOList(Commander.Player, playerUnits);
     }
 
     public void AddEnemyUnit(GameObject inUnit)
     {
         enemyUnits.Add(inUnit);
+        PrintGOList(Commander.Enemy, enemyUnits);
     }
 
     public void RemoveEnemyUnit(GameObject inUnit)
     {
         enemyUnits.Remove(inUnit);
+        PrintGOList(Commander.Enemy, enemyUnits);
+    }
+
+
+    private void PrintGOList(Commander inCommander, List<GameObject> inList)
+    {
+        Debug.Log(inCommander.ToString().ToUpper() + " LIST!\n");
+
+        for(int i=0; i < inList.Count; i++)
+        {
+            Debug.Log("\t" + inList[i].name + "\n");
+        }
     }
 }
 
