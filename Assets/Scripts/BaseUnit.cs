@@ -59,8 +59,6 @@ public class BaseUnit : MonoBehaviour
 
     private int attackLayerMask;
 
-    private bool attacking = false;
-
     private float attackTimer = 0f;
 
     private float attackRate;
@@ -68,8 +66,6 @@ public class BaseUnit : MonoBehaviour
     private GameObject targetUnit = null;
 
     private Animator unitAnimator;
-
-    private bool animationSet = false;
 
 
 
@@ -132,18 +128,13 @@ public class BaseUnit : MonoBehaviour
 
     private void Move()
     {
-        if (animationSet == false)
-        {
-            unitAnimator.SetTrigger("Move");
-            animationSet = true;
-        }
+        unitAnimator.SetTrigger("Move");
 
         transform.position += transform.right * moveSpeed * Time.deltaTime;
 
         if(CheckStoppingRange() == true)
         {
             unitState = UnitStates.Idle;
-            animationSet = false;
         }
     }
 
@@ -152,16 +143,11 @@ public class BaseUnit : MonoBehaviour
 
     private void Idle()
     {
-        if (animationSet == false)
-        {
-            unitAnimator.SetTrigger("Idle");
-            animationSet = true;
-        }
+        unitAnimator.SetTrigger("Idle");
 
         if (CheckStoppingRange() == false)
         {
             unitState = UnitStates.Move;
-            animationSet = false;
         }
     }
 
@@ -172,20 +158,15 @@ public class BaseUnit : MonoBehaviour
 
     private void Attack()
     {
+        //if (commander == Commander.Player) Debug.Log("AttackTimer: " + attackTimer + "\t AttackRate: " + attackRate);
 
-        
         if (attackTimer == 0)
         {
-            Debug.Log("Attack!");
-            attacking = true;
-
+            //if(commander == Commander.Player) Debug.Log("Attack!");
             unitAnimator.SetTrigger("Attack");
-            animationSet = false;
         }
 
-        attackTimer += Time.deltaTime;
-
-        Debug.Log("AttackTimer: " + attackTimer + "\t AttackRate: " + attackRate);
+       
 
         if (attackTimer >= attackRate)
         {
@@ -193,16 +174,20 @@ public class BaseUnit : MonoBehaviour
         }
         else
         {
-            if(CheckStoppingRange())
+            if(attackTimer != 0f)
             {
-                unitState = UnitStates.Idle;
+                if (CheckStoppingRange())
+                {
+                    unitState = UnitStates.Idle;
+                }
+                else
+                {
+                    unitState = UnitStates.Move;
+                }
             }
-            else
-            {
-                unitState = UnitStates.Move;
-            }
-        }
 
+            attackTimer += Time.deltaTime;
+        }
     }
 
 
