@@ -433,8 +433,6 @@ public class BaseUnit : MonoBehaviour
         currentHealth -= inNum;
 
         if (currentHealth <= 0) currentHealth = 0;
-
-        //Debug.Log("HEALTH: " + currentHealth);
     }
 
     public int GetBuildCost()
@@ -449,11 +447,13 @@ public class BaseUnit : MonoBehaviour
         {
             gameController.RemovePlayerUnit(this.gameObject);
             resourceController.AddEnemyScrap(scrapDrop);
+            resourceController.AddEnemyExp(expDrop);
         }
         else
         {
             gameController.RemoveEnemyUnit(this.gameObject);
             resourceController.AddPlayerScrap(scrapDrop);
+            resourceController.AddPlayerExp(expDrop);
         }
     }
 

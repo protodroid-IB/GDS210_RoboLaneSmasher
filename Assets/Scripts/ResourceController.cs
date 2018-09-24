@@ -23,23 +23,27 @@ public class ResourceController : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI scrapValue, expValue;
 
+
+
+
+
     // Use this for initialization
     void Start ()
     {
         gameController = GameObject.FindWithTag("GameController").GetComponent<GameController>();
 
+        // set the player and enemy scrap to their starting scrap amounts
         playerScrap = playerStartScrap;
         enemyScrap = enemyStartScrap;
 
-        UpdateScrapUI();
-
+        // set the player and enemy experience to the required experience
         playerRequiredExp = advanceToMediumExp;
         enemyRequiredExp = advanceToMediumExp;
 
+        // update scrap and exp UI
+        UpdateScrapUI();
         UpdateExpUI();
     }
-
-
 
 
 
@@ -95,17 +99,32 @@ public class ResourceController : MonoBehaviour
     {
         playerExp += inExp;
 
-        if (playerExp >= playerRequiredExp)
+        if(gameController.GetPlayerWeightClass() != WeightClass.Heavy)
         {
-            playerExp = 0;
-            gameController.AdvancePlayerWeightClass();
-            // CHANGE PLAYER REQUIRED EXPERIENCE HERE!!!
+            if (playerExp >= playerRequiredExp)
+            {
+                playerExp = 0;
+
+                if (gameController.GetPlayerWeightClass() == WeightClass.Light)
+                {
+                    playerRequiredExp = advanceToHeavyExp;
+                }
+
+                gameController.AdvancePlayerWeightClass();
+                Debug.Log("Player Weight Class Advanced: " + gameController.GetPlayerWeightClass().ToString());
+            }
         }
+
+        UpdateExpUI();
     }
 
     public void SubtractPlayerExp(int inExp)
     {
         playerExp -= inExp;
+
+        if (playerExp <= 0) playerExp = 0;
+
+        UpdateExpUI();
     }
 
 
@@ -119,11 +138,21 @@ public class ResourceController : MonoBehaviour
     {
         enemyExp += inExp;
 
-        if (enemyExp >= enemyRequiredExp)
+        if (gameController.GetEnemyWeightClass() != WeightClass.Heavy)
         {
-            enemyExp = 0;
-            gameController.AdvanceEnemyWeightClass();
-            // CHANGE ENEMY REQUIRED EXPERIENCE HERE!
+            if (enemyExp >= enemyRequiredExp)
+            {
+                enemyExp = 0;
+
+                if (gameController.GetEnemyWeightClass() == WeightClass.Light)
+                {
+                    enemyRequiredExp = advanceToHeavyExp;
+                }
+
+                gameController.AdvanceEnemyWeightClass();
+                Debug.Log("Enemy Weight Class Advanced: " + gameController.GetEnemyWeightClass().ToString());
+
+            }
         }
     }
 
@@ -140,7 +169,13 @@ public class ResourceController : MonoBehaviour
 
     private void UpdateExpUI()
     {
-        expValue.text = playerExp.ToString() + "/" + playerRequiredExp.ToString();
-
+        if(gameController.GetPlayerWeightClass() != WeightClass.Heavy)
+        {
+            expValue.text = playerExp.ToString() + " / " + playerRequiredExp.ToString();
+        }
+        else
+        {
+            expValue.text = playerExp.ToString();
+        }
     }
 }
