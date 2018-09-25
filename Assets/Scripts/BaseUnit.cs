@@ -18,6 +18,12 @@ public class BaseUnit : MonoBehaviour
 
 
 
+    // UNIT ICON FOR UI PURPOSES
+    [SerializeField]
+    private Sprite iconUI;
+
+
+
 
     // RAYCASTING REFERENCES AND VARIABLES
     [Space(5)]
@@ -443,6 +449,11 @@ public class BaseUnit : MonoBehaviour
     public float GetBuildTime()
     {
         return buildTime;
+    }
+
+    public Sprite GetIcon()
+    {
+        return iconUI;
     }
 
 

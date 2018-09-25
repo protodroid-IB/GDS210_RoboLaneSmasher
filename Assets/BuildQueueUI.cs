@@ -11,7 +11,7 @@ public class BuildQueueUI : MonoBehaviour
 
     private Color transparent = new Color(1f,1f,1f,0f);
     private Color firstColor = Color.white;
-    private Color queuedColor = new Color(0f, 0f, 0f, 0.5f);
+    private Color queuedColor = new Color(0.4f, 0.4f, 0.4f, 0.5f);
 
 	// Use this for initialization
 	void Start ()
@@ -25,13 +25,13 @@ public class BuildQueueUI : MonoBehaviour
 		
 	}
 
-    public void UpdateUI(bool[] emptyArray)
+    public void UpdateUI(bool[] emptyArray, Sprite[] iconArray)
     {
         // if there is a unit in the first position of the queue
         if(!emptyArray[0])
         {
             // change sprite to unit icon
-            // IMPLEMENT!
+            queueImages[0].sprite = iconArray[0];
 
             queueImages[0].color = firstColor;  // change color to first unit color
         }
@@ -55,11 +55,10 @@ public class BuildQueueUI : MonoBehaviour
             else
             {
                 // change sprite to unit icon
-                // IMPLEMENT!
+                queueImages[i].sprite = iconArray[0];
 
                 queueImages[i].color = queuedColor;   // change color to queued unit color
             }
-        }
-        
+        }        
     }
 }

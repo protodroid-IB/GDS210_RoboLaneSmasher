@@ -19,6 +19,7 @@ public class BuildQueue : MonoBehaviour
 
     private List<Build> buildQueue;
     private bool[] emptyArray;
+    private Sprite[] iconArray;
 
     private int nextEmptyIndex = 0;
 
@@ -33,22 +34,21 @@ public class BuildQueue : MonoBehaviour
         gameController = GameObject.FindWithTag("GameController").GetComponent<GameController>();
         buildQueueUI = GameObject.FindWithTag("BuildQueueUI").GetComponent<BuildQueueUI>();
 
-
-    }
-
-
-    public BuildQueue()
-    {
         buildQueue = new List<Build>();
-        emptyArray = new bool[buildQueue.Count];
+
         queueCapacity = 5;
         buildTimer = 0f;
 
-        for(int i=0; i < emptyArray.Length; i++)
+        emptyArray = new bool[queueCapacity];
+        iconArray = new Sprite[queueCapacity];
+
+        for (int i = 0; i < emptyArray.Length; i++)
         {
             emptyArray[i] = true;
+            iconArray[i] = null;
         }
     }
+
 
 
     public void AddToQueue(GameObject inPrefab, Vector3 inPos, Quaternion inRot, Transform inParent, float buildTime, Sprite inIcon)
@@ -67,11 +67,14 @@ public class BuildQueue : MonoBehaviour
 
             // add that build to the queue
             buildQueue.Add(newBuild);
-            emptyArray[nextEmptyIndex] = false;   
-        }
+            iconArray[nextEmptyIndex] = inIcon;
+            emptyArray[nextEmptyIndex] = false;
 
-        // increment next empty index
-        if(!IsFull()) nextEmptyIndex++;
+            nextEmptyIndex++;
+
+            // update UI
+            buildQueueUI.UpdateUI(emptyArray, iconArray);
+        }
 
     }
 
@@ -114,10 +117,16 @@ public class BuildQueue : MonoBehaviour
             {
                 CreateTheUnit(); // create the unit
                 buildQueue.RemoveAt(0); // remove the build in the queue
+
                 nextEmptyIndex--; // decrement the next empty index
+
                 emptyArray[nextEmptyIndex] = true; // set as empty 
+                iconArray[nextEmptyIndex] = null; // set icon as null
                 buildTimer = 0f; // reset the build timer
-                
+
+                // update UI
+                buildQueueUI.UpdateUI(emptyArray, iconArray);
+
             }
 
             // increment the build timer

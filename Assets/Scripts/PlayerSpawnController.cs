@@ -9,6 +9,9 @@ public class PlayerSpawnController : MonoBehaviour
     private ResourceController resourceController;
     private BuildQueue buildQueue;
 
+    [SerializeField]
+    private PreventBuild preventBuild;
+
     private UnitDatabase unitDatabase;
 
     [SerializeField]
@@ -21,8 +24,8 @@ public class PlayerSpawnController : MonoBehaviour
     {
         gameController = GameObject.FindWithTag("GameController").GetComponent<GameController>();
         resourceController = GameObject.FindWithTag("GameController").GetComponent<ResourceController>();
-        unitDatabase = GetComponent<UnitDatabase>();
-        buildQueue = new BuildQueue();
+        unitDatabase = transform.parent.GetComponent<UnitDatabase>();
+        buildQueue = GetComponent<BuildQueue>();
 
     }
 	
@@ -45,17 +48,23 @@ public class PlayerSpawnController : MonoBehaviour
 
     private void CreateUnit(WeightClass inClass, UnitType inType)
     {
-        Unit newUnit = unitDatabase.FindUnit(inClass, inType); // grab the unit from the database 
-        int buildCost = newUnit.prefab.GetComponent<BaseUnit>().GetBuildCost(); // grab the cost to build the unit
-
-        // if the unit cost is affordable
-        if (CanAfford(buildCost))
+        if (preventBuild.CanBuild())
         {
-            // grab the build time of the unit
-            float buildTime = newUnit.prefab.GetComponent<BaseUnit>().GetBuildTime(); 
+            Unit newUnit = unitDatabase.FindUnit(inClass, inType); // grab the unit from the database 
+            BaseUnit newUnitDetails = newUnit.prefab.GetComponent<BaseUnit>();
 
-            // add to build queue
-            buildQueue.AddToQueue(newUnit.prefab, spawnPos.position, Quaternion.identity, playerUnitsHierarchy, buildTime, null);
+            int buildCost = newUnitDetails.GetBuildCost(); // grab the cost to build the unit
+
+            // if the unit cost is affordable
+            if (CanAfford(buildCost))
+            {
+                // grab the build time of the unit
+                float buildTime = newUnitDetails.GetBuildTime();
+                Sprite unitIcon = newUnitDetails.GetIcon();
+
+                // add to build queue
+                buildQueue.AddToQueue(newUnit.prefab, spawnPos.position, Quaternion.identity, playerUnitsHierarchy, buildTime, unitIcon);
+            }
         }
     }
 

@@ -339,6 +339,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   commander: 0
+  iconUI: {fileID: 21300000, guid: 98739fb71ed91654bba883200bb7e2ce, type: 3}
   raycastOrigin: {fileID: 4255740309278204}
   raycastRange: 10
   stoppingDistance: 0.15
