@@ -7,6 +7,7 @@ public class PlayerSpawnController : MonoBehaviour
 
     private GameController gameController;
     private ResourceController resourceController;
+    private BuildQueue buildQueue;
 
     private UnitDatabase unitDatabase;
 
@@ -21,6 +22,8 @@ public class PlayerSpawnController : MonoBehaviour
         gameController = GameObject.FindWithTag("GameController").GetComponent<GameController>();
         resourceController = GameObject.FindWithTag("GameController").GetComponent<ResourceController>();
         unitDatabase = GetComponent<UnitDatabase>();
+        buildQueue = new BuildQueue();
+
     }
 	
 	// Update is called once per frame
@@ -38,16 +41,26 @@ public class PlayerSpawnController : MonoBehaviour
 
 
 
+
+
     private void CreateUnit(WeightClass inClass, UnitType inType)
     {
-        Unit newUnit = unitDatabase.FindUnit(inClass, inType);
+        Unit newUnit = unitDatabase.FindUnit(inClass, inType); // grab the unit from the database 
+        int buildCost = newUnit.prefab.GetComponent<BaseUnit>().GetBuildCost(); // grab the cost to build the unit
 
-        if(CanAfford(newUnit.prefab.GetComponent<BaseUnit>().GetBuildCost()))
+        // if the unit cost is affordable
+        if (CanAfford(buildCost))
         {
-            GameObject newUnitGO = Instantiate(newUnit.prefab, spawnPos.position, Quaternion.identity, playerUnitsHierarchy);
-            gameController.AddPlayerUnit(newUnitGO);
-        }   
+            // grab the build time of the unit
+            float buildTime = newUnit.prefab.GetComponent<BaseUnit>().GetBuildTime(); 
+
+            // add to build queue
+            buildQueue.AddToQueue(newUnit.prefab, spawnPos.position, Quaternion.identity, playerUnitsHierarchy, buildTime, null);
+        }
     }
+
+
+
 
     private bool CanAfford(int inCost)
     {

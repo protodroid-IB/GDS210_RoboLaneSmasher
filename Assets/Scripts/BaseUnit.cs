@@ -440,6 +440,11 @@ public class BaseUnit : MonoBehaviour
         return buildCost;
     }
 
+    public float GetBuildTime()
+    {
+        return buildTime;
+    }
+
 
     private void OnDestroy()
     {

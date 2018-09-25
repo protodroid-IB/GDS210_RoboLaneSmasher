@@ -7,6 +7,7 @@ TagManager:
   - CameraBoundaryPlayer
   - CameraBoundaryEnemy
   - Unit
+  - BuildQueueUI
   layers:
   - Default
   - TransparentFX
