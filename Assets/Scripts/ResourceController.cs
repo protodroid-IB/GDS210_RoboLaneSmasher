@@ -48,6 +48,12 @@ public class ResourceController : MonoBehaviour
     [SerializeField]
     private Button advanceWeightClassButton;
 
+    [SerializeField]
+    private Image weightClassIcon;
+
+    [SerializeField]
+    private Sprite[] weightClassIconSprites;
+
     private bool advanceWeightClassButtonPressed = false;
 
     private Color advanceEnabledColor = Color.white;
@@ -78,6 +84,8 @@ public class ResourceController : MonoBehaviour
 
         // update advance class weight UI
         UpdateAdvanceClassUI(advanceDisabledColor, false);
+
+        UpdateWeightClassIconsUI(gameController.GetPlayerWeightClass());
     }
 
 
@@ -177,6 +185,7 @@ public class ResourceController : MonoBehaviour
                     unitButtonsUI.UpdateUI();
                     advanceWeightClassButtonPressed = false;
                     UpdateAdvanceClassUI(advanceDisabledColor, false);
+                    UpdateWeightClassIconsUI(gameController.GetPlayerWeightClass());
 
                     Debug.Log("Player Weight Class Advanced: " + gameController.GetPlayerWeightClass().ToString());
                 } 
@@ -243,5 +252,23 @@ public class ResourceController : MonoBehaviour
     {
         advanceWeightClassIcon.color = inColor;
         advanceWeightClassButton.interactable = buttonEnabled;
+    }
+
+    public void UpdateWeightClassIconsUI(WeightClass inClass)
+    {
+        switch(inClass)
+        {
+            case WeightClass.Light:
+                weightClassIcon.sprite = weightClassIconSprites[0];
+                break;
+
+            case WeightClass.Medium:
+                weightClassIcon.sprite = weightClassIconSprites[1];
+                break;
+
+            case WeightClass.Heavy:
+                weightClassIcon.sprite = weightClassIconSprites[3];
+                break;
+        }
     }
 }
