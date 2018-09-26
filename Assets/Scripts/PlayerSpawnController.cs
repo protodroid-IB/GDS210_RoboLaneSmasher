@@ -42,6 +42,15 @@ public class PlayerSpawnController : MonoBehaviour
         CreateUnit(gameController.GetPlayerWeightClass(), UnitType.Melee);
     }
 
+    public void SpawnRangedUnit()
+    {
+        CreateUnit(gameController.GetPlayerWeightClass(), UnitType.Ranged);
+    }
+
+    public void SpawnFlyingUnit()
+    {
+        CreateUnit(gameController.GetPlayerWeightClass(), UnitType.Flying);
+    }
 
 
 
@@ -63,7 +72,7 @@ public class PlayerSpawnController : MonoBehaviour
                 Sprite unitIcon = newUnitDetails.GetIcon();
 
                 // add to build queue
-                buildQueue.AddToQueue(newUnit.prefab, spawnPos.position, Quaternion.identity, playerUnitsHierarchy, buildTime, unitIcon);
+                buildQueue.AddToQueue(newUnit.prefab, spawnPos.position + newUnit.prefab.transform.localPosition, Quaternion.identity, playerUnitsHierarchy, buildTime, unitIcon);
             }
         }
     }

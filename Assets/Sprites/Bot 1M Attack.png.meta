@@ -1,7 +1,9 @@
 fileFormatVersion: 2
 guid: 38c31248c84b8bb4a81d02a656b49fc2
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: Bot 1M Attack_0
+    21300002: Bot 1M Attack_1
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -104,7 +106,47 @@ TextureImporter:
     androidETC2FallbackOverride: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Bot 1M Attack_0
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 122
+        width: 104
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b5c22b3e53a25534e831fbe5e914631a
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bot 1M Attack_1
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 2
+        width: 102
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 06fdcce1747ebca47a12f251631d1fa9
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

@@ -48,7 +48,7 @@ public class BuildQueueUI : MonoBehaviour
             else
             {
                 // change sprite to unit icon
-                queueImages[i].sprite = iconArray[0];
+                queueImages[i].sprite = iconArray[i];
 
                 queueImages[i].color = queuedColor;   // change color to queued unit color
             }

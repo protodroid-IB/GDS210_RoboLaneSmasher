@@ -1,9 +1,9 @@
 fileFormatVersion: 2
-guid: e874db1caf71c0349a769cf52c0176ce
+guid: 0ba73da74896b1b42af16c5b580effad
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Bot 1M Moving_0
-    21300002: Bot 1M Moving_1
+    21300000: MediumRanged_0
+    21300002: MediumRanged_1
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -108,11 +108,11 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Bot 1M Moving_0
+      name: MediumRanged_0
       rect:
         serializedVersion: 2
-        x: 4
-        y: 130
+        x: 0
+        y: 0
         width: 104
         height: 58
       alignment: 0
@@ -122,17 +122,17 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d7400617e48cccf4cbd88e0a5dbcda67
+      spriteID: 97dbe0ce277c6b046ba1ab2fe78d7d86
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bot 1M Moving_1
+      name: MediumRanged_1
       rect:
         serializedVersion: 2
-        x: 4
-        y: 2
+        x: 108
+        y: 0
         width: 104
         height: 62
       alignment: 0
@@ -142,7 +142,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 81cc3f9071cf491449760875041070d2
+      spriteID: 4a5080a11b92d944d99848dc22f8373f
       vertices: []
       indices: 
       edges: []
@@ -150,7 +150,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: f2fa69f1d8aa6ca4e903f178943f13e9
+    spriteID: 72d231f29f926134685cebf278268a0b
     vertices: []
     indices: 
     edges: []
