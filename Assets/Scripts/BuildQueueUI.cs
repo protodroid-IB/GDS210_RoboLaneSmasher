@@ -9,21 +9,14 @@ public class BuildQueueUI : MonoBehaviour
     [SerializeField]
     private Image[] queueImages;
 
+    [SerializeField]
+    private RectTransform buildProgressBar;
+
     private Color transparent = new Color(1f,1f,1f,0f);
     private Color firstColor = Color.white;
     private Color queuedColor = new Color(0.4f, 0.4f, 0.4f, 0.5f);
 
-	// Use this for initialization
-	void Start ()
-    { 
 
-	}
-	
-	// Update is called once per frame
-	void Update ()
-    {
-		
-	}
 
     public void UpdateUI(bool[] emptyArray, Sprite[] iconArray)
     {
@@ -60,5 +53,13 @@ public class BuildQueueUI : MonoBehaviour
                 queueImages[i].color = queuedColor;   // change color to queued unit color
             }
         }        
+    }
+
+
+
+
+    public void UpdateBuildProgressUI(float inRatio)
+    {
+        buildProgressBar.localScale = new Vector3(buildProgressBar.localScale.x, inRatio, buildProgressBar.localScale.z);
     }
 }

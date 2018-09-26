@@ -136,6 +136,8 @@ public class BuildQueue : MonoBehaviour
         {
             buildTimer = 0f;
         }
+
+        buildQueueUI.UpdateBuildProgressUI(GetBuildProgressRatio());
     }
 
 
@@ -155,6 +157,14 @@ public class BuildQueue : MonoBehaviour
             gameController.AddEnemyUnit(newUnitGO);
         }
         
+    }
+
+
+
+    public float GetBuildProgressRatio()
+    {
+        if (!IsEmpty()) return (buildTimer / buildQueue[0].buildTime);
+        else return buildTimer;
     }
 
 
