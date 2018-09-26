@@ -8,6 +8,8 @@ TagManager:
   - CameraBoundaryEnemy
   - Unit
   - BuildQueueUI
+  - SpawnController
+  - UnitButtons
   layers:
   - Default
   - TransparentFX

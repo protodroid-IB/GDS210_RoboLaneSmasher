@@ -2,26 +2,56 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class ResourceController : MonoBehaviour
 {
     private GameController gameController;
+    private UnitButtonsUI unitButtonsUI;
+
 
     [Space(5)]
     [Header("STARTING SCRAP AMOUNTS")]
     [SerializeField]
-    private int playerStartScrap, enemyStartScrap;
+    private int playerStartScrap;
+
+    [SerializeField]
+    private int enemyStartScrap;
 
     private int playerScrap, enemyScrap;
 
+    [Space(5)]
+    [Header("EXPERIENCE NEEDED TO ADVANCE TO NEXT WEIGHT CLASS")]
     [SerializeField]
-    private int advanceToMediumExp = 1000, advanceToHeavyExp = 3000;
+    private int advanceToMediumExp = 1000;
+
+    [SerializeField]
+    private int advanceToHeavyExp = 3000;
 
     private int playerRequiredExp, enemyRequiredExp;
     private int playerExp = 0, enemyExp = 0;
 
+
+    [Space(5)]
+    [Header("GAME VALUE TEXT COMPONENT REFERENCES")]
     [SerializeField]
-    private TextMeshProUGUI scrapValue, expValue;
+    private TextMeshProUGUI scrapValue;
+
+    [SerializeField]
+    private TextMeshProUGUI expValue;
+
+    [Space(5)]
+    [Header("ADVANCE WEIGHT CLASS BUTTON REFERENCES")]
+    [SerializeField]
+    private Image advanceWeightClassIcon;
+
+    [SerializeField]
+    private Button advanceWeightClassButton;
+
+    private bool advanceWeightClassButtonPressed = false;
+
+    private Color advanceEnabledColor = Color.white;
+    private Color advanceDisabledColor = new Color(0.4f, 0.4f, 0.4f, 0.5f);
 
 
 
@@ -31,6 +61,8 @@ public class ResourceController : MonoBehaviour
     void Start ()
     {
         gameController = GameObject.FindWithTag("GameController").GetComponent<GameController>();
+        unitButtonsUI = GameObject.FindWithTag("UnitButtons").GetComponent<UnitButtonsUI>(); 
+
 
         // set the player and enemy scrap to their starting scrap amounts
         playerScrap = playerStartScrap;
@@ -43,6 +75,9 @@ public class ResourceController : MonoBehaviour
         // update scrap and exp UI
         UpdateScrapUI();
         UpdateExpUI();
+
+        // update advance class weight UI
+        UpdateAdvanceClassUI(advanceDisabledColor, false);
     }
 
 
@@ -95,29 +130,6 @@ public class ResourceController : MonoBehaviour
         return playerExp;
     }
 
-    public void AddPlayerExp(int inExp)
-    {
-        playerExp += inExp;
-
-        if(gameController.GetPlayerWeightClass() != WeightClass.Heavy)
-        {
-            if (playerExp >= playerRequiredExp)
-            {
-                playerExp = 0;
-
-                if (gameController.GetPlayerWeightClass() == WeightClass.Light)
-                {
-                    playerRequiredExp = advanceToHeavyExp;
-                }
-
-                gameController.AdvancePlayerWeightClass();
-                Debug.Log("Player Weight Class Advanced: " + gameController.GetPlayerWeightClass().ToString());
-            }
-        }
-
-        UpdateExpUI();
-    }
-
     public void SubtractPlayerExp(int inExp)
     {
         playerExp -= inExp;
@@ -127,12 +139,54 @@ public class ResourceController : MonoBehaviour
         UpdateExpUI();
     }
 
-
-
     public int GetEnemyExp()
     {
         return enemyExp;
     }
+
+    public void SubtractEnemyExp(int inExp)
+    {
+        enemyExp -= inExp;
+    }
+
+
+
+
+    public void AddPlayerExp(int inExp)
+    {
+        playerExp += inExp;
+
+        if (playerExp >= playerRequiredExp) playerExp = playerRequiredExp;
+
+        if(gameController.GetPlayerWeightClass() != WeightClass.Heavy)
+        {
+            if (playerExp >= playerRequiredExp)
+            {
+                UpdateAdvanceClassUI(advanceEnabledColor, true);
+
+                if (advanceWeightClassButtonPressed == true)
+                {
+                    playerExp = 0;
+
+                    if (gameController.GetPlayerWeightClass() == WeightClass.Light)
+                    {
+                        playerRequiredExp = advanceToHeavyExp;
+                    }
+
+                    gameController.AdvancePlayerWeightClass();
+                    unitButtonsUI.UpdateUI();
+                    advanceWeightClassButtonPressed = false;
+                    UpdateAdvanceClassUI(advanceDisabledColor, false);
+
+                    Debug.Log("Player Weight Class Advanced: " + gameController.GetPlayerWeightClass().ToString());
+                } 
+            }
+        }
+
+        UpdateExpUI();
+    }
+
+
 
     public void AddEnemyExp(int inExp)
     {
@@ -156,10 +210,7 @@ public class ResourceController : MonoBehaviour
         }
     }
 
-    public void SubtractEnemyExp(int inExp)
-    {
-        enemyExp -= inExp;
-    }
+
 
 
     private void UpdateScrapUI()
@@ -177,5 +228,20 @@ public class ResourceController : MonoBehaviour
         {
             expValue.text = playerExp.ToString();
         }
+    }
+
+
+
+    // this is triggered when the player presses the advance button
+    public void AdvanceWeightClass()
+    {
+        advanceWeightClassButtonPressed = true;
+        AddPlayerExp(0);
+    }
+
+    public void UpdateAdvanceClassUI(Color inColor, bool buttonEnabled)
+    {
+        advanceWeightClassIcon.color = inColor;
+        advanceWeightClassButton.interactable = buttonEnabled;
     }
 }

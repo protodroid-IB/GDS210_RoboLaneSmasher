@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
+
     private WeightClass playerWeightClass = WeightClass.Light;
     private WeightClass enemyWeightClass = WeightClass.Light;
 
