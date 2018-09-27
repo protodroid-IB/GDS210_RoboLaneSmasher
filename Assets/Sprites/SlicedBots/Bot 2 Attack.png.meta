@@ -4,6 +4,8 @@ TextureImporter:
   fileIDToRecycleName:
     21300000: Bot 2 Attack (1)_0
     21300002: Bot 2 Attack (1)_1
+    21300004: Bot 2 Attack_0
+    21300006: Bot 2 Attack_1
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -108,41 +110,41 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Bot 2 Attack (1)_0
+      name: Bot 2 Attack_0
       rect:
         serializedVersion: 2
-        x: 28
-        y: 10
-        width: 80
-        height: 42
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        x: 0
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 343f6a44d82d8164b9a18b7c264fe178
+      spriteID: 81314fb65d4fc9947b10d09c5c0b0ffc
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bot 2 Attack (1)_1
+      name: Bot 2 Attack_1
       rect:
         serializedVersion: 2
-        x: 156
-        y: 10
-        width: 80
-        height: 38
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        x: 128
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6793bc36b5136ee46823782a633fdc3a
+      spriteID: 1cd6b46aa0f87964c917c61b7a763789
       vertices: []
       indices: 
       edges: []

@@ -1,11 +1,9 @@
 fileFormatVersion: 2
-guid: c06e1e58eda922041a72266ffc454a31
+guid: 73b7f296ec3dc8d42a106ab345ae520d
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Bot 2 Moving (1)_0
-    21300002: Bot 2 Moving (1)_1
-    21300004: Bot 2 Moving_0
-    21300006: Bot 2 Moving_1
+    21300000: Bot 3 Idle_0
+    21300002: Bot 3 Idle_1
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -67,7 +65,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -78,7 +76,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -89,7 +87,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -100,7 +98,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -110,13 +108,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Bot 2 Moving_0
+      name: Bot 3 Idle_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 128
-        height: 128
+        y: 100
+        width: 100
+        height: 100
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,19 +122,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a96b20550a6aed34b97365c86f9c342c
+      spriteID: 6f23ec4223b4cf34696d1c88bffd4654
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bot 2 Moving_1
+      name: Bot 3 Idle_1
       rect:
         serializedVersion: 2
-        x: 128
+        x: 0
         y: 0
-        width: 128
-        height: 128
+        width: 100
+        height: 100
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -144,7 +142,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6d5488b083eb2e143929035beccec615
+      spriteID: 172e823711ff2ff46b150e83dc09b92d
       vertices: []
       indices: 
       edges: []
@@ -152,7 +150,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: ddd2acd29d4a23c4a933abaf24204af7
+    spriteID: fdb2977033814d2449cc7734ee6850a1
     vertices: []
     indices: 
     edges: []

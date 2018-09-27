@@ -4,6 +4,8 @@ TextureImporter:
   fileIDToRecycleName:
     21300000: Bot 2 Idle (1)_0
     21300002: Bot 2 Idle (1)_1
+    21300004: Bot 2 Idle_0
+    21300006: Bot 2 Idle_1
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -108,41 +110,41 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Bot 2 Idle (1)_0
+      name: Bot 2 Idle_0
       rect:
         serializedVersion: 2
-        x: 28
-        y: 10
-        width: 80
-        height: 38
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        x: 0
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 64ad33c1c5a39024d90f671c7795aab0
+      spriteID: 34fa53f53944de24f8e09ecff5e0e06f
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bot 2 Idle (1)_1
+      name: Bot 2 Idle_1
       rect:
         serializedVersion: 2
-        x: 156
-        y: 10
-        width: 80
-        height: 40
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        x: 128
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 552b0c807c4de3b41856f574dacc906f
+      spriteID: 822b7a99ef30e6740b334205b8844de8
       vertices: []
       indices: 
       edges: []
