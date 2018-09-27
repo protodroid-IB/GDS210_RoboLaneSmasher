@@ -164,6 +164,8 @@ public class ResourceController : MonoBehaviour
     {
         playerExp += inExp;
 
+        Debug.Log(playerExp);
+
         if (playerExp >= playerRequiredExp) playerExp = playerRequiredExp;
 
         if(gameController.GetPlayerWeightClass() != WeightClass.Heavy)

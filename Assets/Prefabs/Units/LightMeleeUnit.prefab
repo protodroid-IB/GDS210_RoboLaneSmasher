@@ -347,7 +347,7 @@ MonoBehaviour:
   attackAnimation: {fileID: 7400000, guid: bf50dfa121ea9c14e87394a99195eab1, type: 2}
   maxHealth: 100
   moveSpeed: 1.5
-  damagePerHit: 10
+  damagePerHit: 50
   hitPerSecond: 1
   buildTime: 2
   buildCost: 25

@@ -459,12 +459,17 @@ public class BaseUnit : MonoBehaviour
 
     private void OnDestroy()
     {
+        // when this unit is destroyed
+
+        // if the commander of this unit is the player
         if(commander == Commander.Player)
         {
             gameController.RemovePlayerUnit(this.gameObject);
             resourceController.AddEnemyScrap(scrapDrop);
             resourceController.AddEnemyExp(expDrop);
         }
+        
+        // if the commander of this unit is the enemy
         else
         {
             gameController.RemoveEnemyUnit(this.gameObject);
