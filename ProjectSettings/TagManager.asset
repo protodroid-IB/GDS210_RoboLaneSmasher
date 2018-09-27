@@ -10,6 +10,7 @@ TagManager:
   - BuildQueueUI
   - SpawnController
   - UnitButtons
+  - Base
   layers:
   - Default
   - TransparentFX

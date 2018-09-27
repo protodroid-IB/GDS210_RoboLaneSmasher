@@ -103,6 +103,9 @@ public class BaseUnit : MonoBehaviour
     private GameObject targetUnitGO = null; // the unit to attacks gameobject reference
     private BaseUnit targetUnit = null; // the unit to attacks base unit script reference
 
+    private GameObject targetBaseGO = null;
+    private BaseReceiveAttack targetBase = null;
+
 
 
 
@@ -191,6 +194,8 @@ public class BaseUnit : MonoBehaviour
             {
                 targetUnitGO = null;
                 targetUnit = null;
+                targetBaseGO = null;
+                targetBase = null;
             }
         }
 	}
@@ -263,7 +268,17 @@ public class BaseUnit : MonoBehaviour
         if(attackTimer >= attackAnimLength && attacking == true)
         {
             attacking = false; // switch the attack boolean
-            targetUnit.SubtractHealth(damagePerHit); // subtract health from the target unit
+
+            if(targetUnit != null)
+            {
+                targetUnit.SubtractHealth(damagePerHit); // subtract health from the target unit
+            }
+
+            if (targetBase != null)
+            {
+                targetBase.SubtractHealth(damagePerHit);  
+            }
+            
         }
 
         // when the time between attacks has passed, set attack timer to 0 - triggering the next attack
@@ -341,26 +356,47 @@ public class BaseUnit : MonoBehaviour
         // if the raycast hit a collider
         if (hit.collider)
         {
-            // if a target unit has not yet been set
-            if(targetUnitGO == null)
+            // if the collider belongs to a unit
+            if(hit.collider.transform.tag == "Unit")
             {
-                // set the target units GO and BaseUnit script
-                targetUnitGO = hit.transform.gameObject;
-                targetUnit = targetUnitGO.GetComponent<BaseUnit>();
-            }
+                // if a target unit has not yet been set
+                if (targetUnitGO == null)
+                {
+                    // set the target units GO and BaseUnit script
+                    targetUnitGO = hit.transform.gameObject;
+                    targetUnit = targetUnitGO.GetComponent<BaseUnit>();
+                }
 
-            // if a target unit has been assigned
-            if (targetUnitGO != null)
-            {
-                // if that target unit is a unit
-                if (targetUnitGO.transform.tag == "Unit")
+                // if a target unit has been assigned
+                if (targetUnitGO != null)
                 {
                     // if the distance between this unit and the target unit is smaller than the attackign range
                     if (hit.distance <= attackingRange)
                     {
                         attack = true; // this unit can attack!
                     }
+                }
+            }
 
+            // if the collider belongs to a base
+            else if(hit.collider.transform.tag == "Base")
+            {
+                // if a target base has not yet been set
+                if (targetBaseGO == null)
+                {
+                    // set the target base GO and BaseHealth script
+                    targetBaseGO = hit.transform.gameObject;
+                    targetBase = targetBaseGO.GetComponent<BaseReceiveAttack>();
+                }
+
+                // if a target base has been assigned
+                if (targetBaseGO != null)
+                {
+                    // if the distance between this unit and the target base is smaller than the attackign range
+                    if (hit.distance <= attackingRange)
+                    {
+                        attack = true; // this unit can attack!
+                    }
                 }
             }
         }
@@ -394,6 +430,14 @@ public class BaseUnit : MonoBehaviour
             if (hit.transform.tag == "Unit")
             {
                 // if that collider is within the stopping distance of this unit - this unit should stop moving
+                if (hit.distance <= stoppingDistance)
+                {
+                    stop = true;
+                }
+            }
+
+            else if (hit.transform.tag == "Base")
+            {
                 if (hit.distance <= stoppingDistance)
                 {
                     stop = true;
