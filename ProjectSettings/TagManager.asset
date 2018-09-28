@@ -11,6 +11,8 @@ TagManager:
   - SpawnController
   - UnitButtons
   - Base
+  - PlayerBase
+  - EnemyBase
   layers:
   - Default
   - TransparentFX

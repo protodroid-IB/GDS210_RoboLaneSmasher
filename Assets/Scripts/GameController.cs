@@ -11,6 +11,9 @@ public class GameController : MonoBehaviour
     private List<GameObject> playerUnits = new List<GameObject>();
     private List<GameObject> enemyUnits = new List<GameObject>();
 
+    [SerializeField]
+    private BaseHealth playerBase, enemyBase;
+
 
 
 
