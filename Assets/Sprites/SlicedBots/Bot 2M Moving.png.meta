@@ -1,11 +1,9 @@
 fileFormatVersion: 2
-guid: a97ad91912c19db40be3e5c5537dd8e8
+guid: 0cf74fde88fed34458500f70e0d53f6b
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Bot 1M Idle (1) 2_0
-    21300002: Bot 1M Idle (1) 2_1
-    21300004: Bot 1M Idle_0
-    21300006: Bot 1M Idle_1
+    21300000: Bot 2M Moving_0
+    21300002: Bot 2M Moving_1
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -110,13 +108,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Bot 1M Idle_0
+      name: Bot 2M Moving_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 128
-        width: 128
-        height: 128
+        y: 100
+        width: 100
+        height: 100
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,19 +122,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 491055a6f9a80204bb92b593f921a282
+      spriteID: 67c7545bca4c3fc4280af8103bafc96b
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bot 1M Idle_1
+      name: Bot 2M Moving_1
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 128
-        height: 128
+        width: 100
+        height: 100
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -144,7 +142,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d3a6040c880c50d4792f1f6e3e4c801d
+      spriteID: 29d2afc7a5272f74e8369e26ffe8d54d
       vertices: []
       indices: 
       edges: []
@@ -152,7 +150,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 7a7b082d1016311418352aab725f987b
+    spriteID: 8bfd7c0a675acc64987f5149acf45adc
     vertices: []
     indices: 
     edges: []

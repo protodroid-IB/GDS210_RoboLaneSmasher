@@ -111,10 +111,10 @@ TextureImporter:
       name: Bot 1M Attack_0
       rect:
         serializedVersion: 2
-        x: 4
-        y: 122
-        width: 104
-        height: 58
+        x: 0
+        y: 120
+        width: 120
+        height: 120
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -122,7 +122,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b5c22b3e53a25534e831fbe5e914631a
+      spriteID: b44817c303a4e7e4a895c91cf3ea4e84
       vertices: []
       indices: 
       edges: []
@@ -131,10 +131,10 @@ TextureImporter:
       name: Bot 1M Attack_1
       rect:
         serializedVersion: 2
-        x: 4
-        y: 2
-        width: 102
-        height: 60
+        x: 0
+        y: 0
+        width: 120
+        height: 120
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -142,7 +142,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 06fdcce1747ebca47a12f251631d1fa9
+      spriteID: 88dd330f2046133448c29204bb5d303c
       vertices: []
       indices: 
       edges: []

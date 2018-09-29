@@ -1,7 +1,9 @@
 fileFormatVersion: 2
-guid: 2bfc00f6b7b9c6e44a7a24b423ad0c53
+guid: e605923bf2d59c947915832672f95873
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: Bot 2M Idle_0
+    21300002: Bot 2M Idle_1
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -104,11 +106,51 @@ TextureImporter:
     androidETC2FallbackOverride: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Bot 2M Idle_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 100
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e90edf0141ed85b4c862b5cfc2af9c84
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bot 2M Idle_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e7b1b322e16e5dd4195b0ec119af0e58
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 9d1e16241ae961b4ab4bdb6f2e764276
+    spriteID: 022cc57b31b09ad4eb3edc9388ca34d2
     vertices: []
     indices: 
     edges: []

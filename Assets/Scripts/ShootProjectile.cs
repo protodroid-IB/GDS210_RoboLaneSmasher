@@ -13,7 +13,6 @@ public class ShootProjectile : MonoBehaviour
     [SerializeField]
     private float projectileSpeed = 3f;
 
-    [SerializeField]
     private Transform projectilesInHierarchy;
 
 
@@ -24,16 +23,18 @@ public class ShootProjectile : MonoBehaviour
     private BaseUnit thisUnit;
 
 
+
     // Use this for initialization
     void Start ()
     {
         thisUnit = GetComponent<BaseUnit>();
+        projectilesInHierarchy = GameObject.FindWithTag("ProjectilesInHierarchy").transform;
     }
 	
 
     public void Fire()
-    {     
-        if(thisUnit.GetTargetUnit() != null) targetTransform = thisUnit.GetTargetUnit().transform;
+    {
+        if (thisUnit.GetTargetUnit() != null) targetTransform = thisUnit.GetTargetUnit().transform;
 
         if (thisUnit.GetTargetBase() != null) targetTransform = thisUnit.GetTargetBase().transform;
 
