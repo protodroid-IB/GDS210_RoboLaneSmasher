@@ -120,6 +120,21 @@ public class BuildQueue : MonoBehaviour
 
                 nextEmptyIndex--; // decrement the next empty index
 
+                // shift the icons down
+                for (int i=0; i < iconArray.Length; i++)
+                {
+                    // if not the last icon in the array
+                    // shift each icon down
+                    if (i < 4)
+                    {
+                        iconArray[i] = iconArray[i + 1];
+                    }
+   
+                    if (i >= nextEmptyIndex) iconArray[i] = null;
+                }
+
+                
+
                 emptyArray[nextEmptyIndex] = true; // set as empty 
                 iconArray[nextEmptyIndex] = null; // set icon as null
                 buildTimer = 0f; // reset the build timer

@@ -267,7 +267,7 @@ public class ResourceController : MonoBehaviour
                 break;
 
             case WeightClass.Heavy:
-                weightClassIcon.sprite = weightClassIconSprites[3];
+                weightClassIcon.sprite = weightClassIconSprites[2];
                 break;
         }
     }
