@@ -1,9 +1,9 @@
 fileFormatVersion: 2
-guid: 22da8a242d374e648bd121e8332bb06e
+guid: 702eeb7005bf98541abd3f3f4b627532
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Bot 3 Attack_0
-    21300002: Bot 3 Attack_1
+    21300000: Bot 3M Idle_0
+    21300002: Bot 3M Idle_1
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -108,7 +108,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Bot 3 Attack_0
+      name: Bot 3M Idle_0
       rect:
         serializedVersion: 2
         x: 0
@@ -122,13 +122,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0f6c7817fadb8f140aedaa59c5d619eb
+      spriteID: c317cf1828cd48a4a82d58dcb1462f80
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bot 3 Attack_1
+      name: Bot 3M Idle_1
       rect:
         serializedVersion: 2
         x: 0
@@ -142,7 +142,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c24f6c1b73a2137498f3a7b350136a92
+      spriteID: a714948d390b1cf43babb0f3f565c87c
       vertices: []
       indices: 
       edges: []
@@ -150,7 +150,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: beb2f944ab0bd394d8571ae945d29e90
+    spriteID: d9f4e44cb25a870459d38c56f22518ce
     vertices: []
     indices: 
     edges: []

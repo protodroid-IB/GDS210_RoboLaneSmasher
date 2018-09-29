@@ -5211,8 +5211,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerStartScrap: 5000
   enemyStartScrap: 150
-  advanceToMediumExp: 200
-  advanceToHeavyExp: 3000
+  advanceToMediumExp: 100
+  advanceToHeavyExp: 100
   scrapValue: {fileID: 43556051}
   expValue: {fileID: 879675383}
   advanceWeightClassIcon: {fileID: 1211615248}
@@ -5590,6 +5590,18 @@ MonoBehaviour:
   - weightClass: 1
     unitType: 1
     prefab: {fileID: 1109484421074896, guid: 6fe5534200c5e0144b884ec0f33c4093, type: 2}
+  - weightClass: 1
+    unitType: 2
+    prefab: {fileID: 1473521310536786, guid: 609f6e8f93e714d41b34e37f2e1ad797, type: 2}
+  - weightClass: 2
+    unitType: 0
+    prefab: {fileID: 1109484421074896, guid: e986dcc5ae2dffe4b8dda691ca889529, type: 2}
+  - weightClass: 2
+    unitType: 1
+    prefab: {fileID: 1109484421074896, guid: 7660daebe3b1bb44d904accf8bf857af, type: 2}
+  - weightClass: 2
+    unitType: 2
+    prefab: {fileID: 1109484421074896, guid: 43df341bf9907c949a7a0f4b25198732, type: 2}
 --- !u!1 &1587175313
 GameObject:
   m_ObjectHideFlags: 0

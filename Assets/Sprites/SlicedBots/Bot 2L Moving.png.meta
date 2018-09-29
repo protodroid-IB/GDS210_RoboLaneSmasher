@@ -1,7 +1,9 @@
 fileFormatVersion: 2
-guid: 702eeb7005bf98541abd3f3f4b627532
+guid: 9a59ce86bda60804284c29883349844b
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: Bot 2L Moving_0
+    21300002: Bot 2L Moving_1
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -104,11 +106,51 @@ TextureImporter:
     androidETC2FallbackOverride: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Bot 2L Moving_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 200
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 35c5362118677a041a7e87af8acf9e7d
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bot 2L Moving_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 234bd873504285b4b90fcfd3048557a2
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: d9f4e44cb25a870459d38c56f22518ce
+    spriteID: 876bf4d1beb54c442a8ec60cff42fa30
     vertices: []
     indices: 
     edges: []
