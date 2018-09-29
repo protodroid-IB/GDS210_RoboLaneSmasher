@@ -110,10 +110,6 @@ public class BaseUnit : MonoBehaviour
 
 
 
-
-
-
-
     private void Awake()
     {
         unitAnimator = GetComponent<Animator>(); // grab the animator 
@@ -276,9 +272,12 @@ public class BaseUnit : MonoBehaviour
 
             if (targetBase != null)
             {
-                targetBase.SubtractHealth(damagePerHit);  
+                targetBase.SubtractHealth(damagePerHit);
             }
+
             
+
+
         }
 
         // when the time between attacks has passed, set attack timer to 0 - triggering the next attack
@@ -521,5 +520,33 @@ public class BaseUnit : MonoBehaviour
             resourceController.AddPlayerExp(expDrop);
         }
     }
+
+
+    public BaseReceiveAttack GetTargetBase()
+    {
+        return targetBase;
+    }
+
+    public BaseUnit GetTargetUnit()
+    {
+        return targetUnit;
+    }
+
+
+    //private void FireProjectile()
+    //{
+    //    if(rangedProjectile != null)
+    //    {
+    //        if(targetUnit != null)
+    //        {
+    //            rangedProjectile.Fire(targetUnit.transform);
+    //        }
+
+    //        if(targetBase != null)
+    //        {
+    //            rangedProjectile.Fire(targetBase.transform);
+    //        } 
+    //    }
+    //}
 
 }

@@ -42,9 +42,25 @@ GameObject:
   - component: {fileID: 95171994240435740}
   - component: {fileID: 61805118116315232}
   - component: {fileID: 114687218150557742}
+  - component: {fileID: 114168759397222720}
   m_Layer: 8
   m_Name: LightRangedUnit
   m_TagString: Unit
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1154601004128706
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4473755838602378}
+  m_Layer: 8
+  m_Name: ProjectileSpawnPos
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -154,8 +170,22 @@ Transform:
   - {fileID: 4255740309278204}
   - {fileID: 4040410070913600}
   - {fileID: 224946012246574976}
+  - {fileID: 4473755838602378}
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4473755838602378
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1154601004128706}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.36, y: 0.26, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4270703940685746}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &50033857954472750
 Rigidbody2D:
@@ -272,6 +302,22 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114168759397222720
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1109484421074896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45350b7bdfdbc734592a3b9dcaf551e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectilePrefab: {fileID: 1028298870552650, guid: 488a0e92cc5bf494c989cf10a0adfc66,
+    type: 2}
+  projectileSpawn: {fileID: 4473755838602378}
+  projectileSpeed: 10
+  projectilesInHierarchy: {fileID: 0}
 --- !u!114 &114211497335152512
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -343,7 +389,7 @@ MonoBehaviour:
   raycastOrigin: {fileID: 4255740309278204}
   raycastRange: 10
   stoppingDistance: 0.15
-  attackingRange: 0.15
+  attackingRange: 2.5
   attackAnimation: {fileID: 7400000, guid: 46390862edfaa914eb54fd300623ad5a, type: 2}
   maxHealth: 100
   moveSpeed: 1.5
