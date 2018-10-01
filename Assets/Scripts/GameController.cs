@@ -14,7 +14,7 @@ public class GameController : MonoBehaviour
     [SerializeField]
     private BaseHealth playerBase, enemyBase;
 
-
+    private bool isPaused = false;
 
 
     // Use this for initialization
@@ -28,6 +28,25 @@ public class GameController : MonoBehaviour
     {
 		
 	}
+
+
+
+    public void SetPaused(bool inPaused)
+    {
+        isPaused = inPaused;
+    }
+
+
+    public bool IsPaused()
+    {
+        return isPaused;
+    }
+
+
+
+
+
+
 
 
 
@@ -65,6 +84,15 @@ public class GameController : MonoBehaviour
             enemyWeightClass = WeightClass.Heavy;
         }
     }
+
+
+
+
+
+
+
+
+
 
 
 
