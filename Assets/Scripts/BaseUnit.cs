@@ -315,14 +315,8 @@ public class BaseUnit : MonoBehaviour
 
     private void Death()
     {
-        // THIS IS FOR TESTING PURPOSES
-        unitAnimator.speed = 0;
-        Invoke("Kill", 0.25f);
-        // END TEST
-
-
-
-        // DEATH STUFF HERE!!!
+        unitAnimator.SetTrigger("Death");
+        Invoke("Kill", 2f);
     }
 
 
@@ -450,7 +444,6 @@ public class BaseUnit : MonoBehaviour
 
     private void Kill()
     {
-        
         Destroy(this.gameObject);
     } 
 

@@ -250,8 +250,8 @@ public class ResourceController : MonoBehaviour
 
     public void UpdateAdvanceClassUI(Color inColor, bool buttonEnabled)
     {
-        advanceWeightClassIcon.color = inColor;
-        advanceWeightClassButton.interactable = buttonEnabled;
+        if(advanceWeightClassIcon != null) advanceWeightClassIcon.color = inColor;
+        if(advanceWeightClassButton != null) advanceWeightClassButton.interactable = buttonEnabled;
     }
 
     public void UpdateWeightClassIconsUI(WeightClass inClass)

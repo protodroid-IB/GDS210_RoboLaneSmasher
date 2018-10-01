@@ -7,6 +7,9 @@ public class BuildQueue : MonoBehaviour
     private GameController gameController;
     private BuildQueueUI buildQueueUI;
 
+    [SerializeField]
+    private PreventBuild preventBuild;
+
     private struct Build
     {
         public GameObject prefab;
@@ -112,8 +115,10 @@ public class BuildQueue : MonoBehaviour
         // if there are builds in the queue
         if(!IsEmpty())
         {
+            Debug.Log("PREVENT BUILD: " + preventBuild.CanBuild());
+
             // if timer to build unit is complete
-            if(buildTimer >= buildQueue[0].buildTime)
+            if(buildTimer >= buildQueue[0].buildTime && preventBuild.CanBuild())
             {
                 CreateTheUnit(); // create the unit
                 buildQueue.RemoveAt(0); // remove the build in the queue
@@ -178,7 +183,15 @@ public class BuildQueue : MonoBehaviour
 
     public float GetBuildProgressRatio()
     {
-        if (!IsEmpty()) return (buildTimer / buildQueue[0].buildTime);
+        if (!IsEmpty())
+        {
+            float ratio = (buildTimer / buildQueue[0].buildTime);
+
+            if (ratio > 1f) ratio = 1f;
+
+            return ratio;
+        }
+
         else return buildTimer;
     }
 

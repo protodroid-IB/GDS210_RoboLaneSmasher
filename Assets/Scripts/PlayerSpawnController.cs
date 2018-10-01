@@ -9,9 +9,6 @@ public class PlayerSpawnController : MonoBehaviour
     private ResourceController resourceController;
     private BuildQueue buildQueue;
 
-    [SerializeField]
-    private PreventBuild preventBuild;
-
     private UnitDatabase unitDatabase;
 
     [SerializeField]
@@ -57,8 +54,6 @@ public class PlayerSpawnController : MonoBehaviour
 
     private void CreateUnit(WeightClass inClass, UnitType inType)
     {
-        if (preventBuild.CanBuild())
-        {
             Unit newUnit = unitDatabase.FindUnit(inClass, inType); // grab the unit from the database 
             BaseUnit newUnitDetails = newUnit.prefab.GetComponent<BaseUnit>();
 
@@ -74,7 +69,6 @@ public class PlayerSpawnController : MonoBehaviour
                 // add to build queue
                 buildQueue.AddToQueue(newUnit.prefab, spawnPos.position + newUnit.prefab.transform.localPosition, Quaternion.identity, playerUnitsHierarchy, buildTime, unitIcon);
             }
-        }
     }
 
 
