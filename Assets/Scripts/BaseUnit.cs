@@ -108,6 +108,10 @@ public class BaseUnit : MonoBehaviour
 
 
 
+    private string baseTag = "PlayerBase";
+
+
+
 
 
     private void Awake()
@@ -115,6 +119,15 @@ public class BaseUnit : MonoBehaviour
         unitAnimator = GetComponent<Animator>(); // grab the animator 
         gameController = GameObject.FindWithTag("GameController").GetComponent<GameController>();
         resourceController = GameObject.FindWithTag("GameController").GetComponent<ResourceController>();
+
+        if(commander == Commander.Player)
+        {
+            baseTag = "EnemyBase";
+        }
+        else if (commander == Commander.Enemy)
+        {
+            baseTag = "PlayerBase";
+        }
     }
 
 
@@ -431,9 +444,12 @@ public class BaseUnit : MonoBehaviour
 
             else if (hit.transform.tag == "Base")
             {
-                if (hit.distance <= stoppingDistance)
+                if (hit.transform.parent.tag == baseTag)
                 {
-                    stop = true;
+                    if (hit.distance <= stoppingDistance)
+                    {
+                        stop = true;
+                    }
                 }
             }
         }

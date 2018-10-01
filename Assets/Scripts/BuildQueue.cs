@@ -115,8 +115,6 @@ public class BuildQueue : MonoBehaviour
         // if there are builds in the queue
         if(!IsEmpty())
         {
-            Debug.Log("PREVENT BUILD: " + preventBuild.CanBuild());
-
             // if timer to build unit is complete
             if(buildTimer >= buildQueue[0].buildTime && preventBuild.CanBuild())
             {
