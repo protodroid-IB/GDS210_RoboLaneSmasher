@@ -62,6 +62,11 @@ public class GameController : MonoBehaviour
             gameOverScreen.GameOverEnemyWins();
         }
     }
+
+    public int GetPlayerScore()
+    {
+        return 0;
+    }
     
 
 
