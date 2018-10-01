@@ -390,7 +390,7 @@ MonoBehaviour:
   stoppingDistance: 0.15
   attackingRange: 2.5
   attackAnimation: {fileID: 7400000, guid: 87753bcdff300db44a69429483e96da0, type: 2}
-  maxHealth: 100
+  maxHealth: 10
   moveSpeed: 1.5
   damagePerHit: 50
   hitPerSecond: 1

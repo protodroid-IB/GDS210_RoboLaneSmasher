@@ -318,7 +318,6 @@ MonoBehaviour:
     type: 2}
   projectileSpawn: {fileID: 4928713591862954}
   projectileSpeed: 10
-  projectilesInHierarchy: {fileID: 0}
 --- !u!114 &114340242590669162
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -337,9 +336,9 @@ MonoBehaviour:
   stoppingDistance: 0.15
   attackingRange: 0.15
   attackAnimation: {fileID: 7400000, guid: 5705928cf72369343911ddc7a939a9ae, type: 2}
-  maxHealth: 100
+  maxHealth: 40
   moveSpeed: 1.5
-  damagePerHit: 50
+  damagePerHit: 10
   hitPerSecond: 1
   buildTime: 2
   buildCost: 25
