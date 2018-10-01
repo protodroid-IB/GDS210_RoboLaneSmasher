@@ -7,38 +7,40 @@ public class FadeMusic : MonoBehaviour
 {
     private AudioSource thisAudio;
 
-    private bool paused = false;
+    private GameController gameController;
 
-    private bool startFade = false;
-
+    private Animator thisAnimator;
 
     // Use this for initialization
-    void Awake ()
+    void Start ()
     {
+        gameController = GameObject.FindWithTag("GameController").GetComponent<GameController>();
         thisAudio = GetComponent<AudioSource>();
+        thisAnimator = GetComponent<Animator>();
     }
-	
-	// Update is called once per frame
-	void Update ()
-    {
-        if (startFade == true)
-        {
-            if (!paused)
-            {
-
-            }
-        }
-	}
 
 
     private void OnEnable()
-    {
-        // if the game is not paused
-        startFade = true;
+    { 
+        thisAnimator.SetTrigger("GameFadeIn");
     }
 
-    public void SetPaused(bool inPaused)
+    public void EnterPauseMenu()
     {
-        paused = inPaused;
+        thisAnimator.SetTrigger("PauseFadeIn");
     }
+
+    public void ExitPauseMenu()
+    {
+        thisAnimator.SetTrigger("PauseFadeOut");
+    }
+
+    public void EndGame()
+    {
+        thisAnimator.SetTrigger("GameFadeOut");
+    }
+
+
+
+
 }

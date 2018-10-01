@@ -6,6 +6,8 @@ using UnityEngine.EventSystems;
 
 public class CameraController : MonoBehaviour
 {
+    private GameController gameController;
+
     DeviceType deviceType = DeviceType.Desktop;
 
     private Vector3 previousPos;
@@ -22,7 +24,10 @@ public class CameraController : MonoBehaviour
 
 
 
-
+    private void Awake()
+    {
+        gameController = GameObject.FindWithTag("GameController").GetComponent<GameController>();
+    }
 
 
     // Use this for initialization
@@ -45,16 +50,20 @@ public class CameraController : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        switch(deviceType)
+        if(!gameController.IsPaused())
         {
-            case DeviceType.Desktop:
-                DragCameraPC();
-                break;
+            switch (deviceType)
+            {
+                case DeviceType.Desktop:
+                    DragCameraPC();
+                    break;
 
-            case DeviceType.Handheld:
-                DragCameraAndroid();
-                break;
+                case DeviceType.Handheld:
+                    DragCameraAndroid();
+                    break;
+            }
         }
+        
 	}
 
 
