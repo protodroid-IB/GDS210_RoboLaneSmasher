@@ -84,7 +84,7 @@ public class BuildQueue : MonoBehaviour
 
 
 
-    private bool IsFull()
+    public bool IsFull()
     {
         if(buildQueue.Count >= queueCapacity)
         {
@@ -98,7 +98,7 @@ public class BuildQueue : MonoBehaviour
 
 
 
-    private bool IsEmpty()
+    public bool IsEmpty()
     {
         if(buildQueue.Count <= 0)
         {
@@ -142,8 +142,9 @@ public class BuildQueue : MonoBehaviour
                 iconArray[nextEmptyIndex] = null; // set icon as null
                 buildTimer = 0f; // reset the build timer
 
+
                 // update UI
-                buildQueueUI.UpdateUI(emptyArray, iconArray);
+                if(gameObject.tag == "Player") buildQueueUI.UpdateUI(emptyArray, iconArray);
 
             }
 
@@ -155,7 +156,7 @@ public class BuildQueue : MonoBehaviour
             buildTimer = 0f;
         }
 
-        buildQueueUI.UpdateBuildProgressUI(GetBuildProgressRatio());
+        if (gameObject.tag == "Player") buildQueueUI.UpdateBuildProgressUI(GetBuildProgressRatio());
     }
 
 

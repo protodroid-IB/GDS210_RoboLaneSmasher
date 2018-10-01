@@ -59,6 +59,8 @@ public class ResourceController : MonoBehaviour
     private Color advanceEnabledColor = Color.white;
     private Color advanceDisabledColor = new Color(0.4f, 0.4f, 0.4f, 0.5f);
 
+    private bool enemyCanAdvance = false;
+
 
 
 
@@ -158,7 +160,15 @@ public class ResourceController : MonoBehaviour
     }
 
 
+    public void SetEnemyCanAdvance(bool inBool)
+    {
+        enemyCanAdvance = inBool;
+    }
 
+    public bool GetEnemyCanAdvance()
+    {
+        return enemyCanAdvance;
+    }
 
     public void AddPlayerExp(int inExp)
     {
@@ -212,9 +222,7 @@ public class ResourceController : MonoBehaviour
                     enemyRequiredExp = advanceToHeavyExp;
                 }
 
-                gameController.AdvanceEnemyWeightClass();
-                Debug.Log("Enemy Weight Class Advanced: " + gameController.GetEnemyWeightClass().ToString());
-
+                enemyCanAdvance = true;
             }
         }
     }
