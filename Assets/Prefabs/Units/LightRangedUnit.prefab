@@ -317,7 +317,6 @@ MonoBehaviour:
     type: 2}
   projectileSpawn: {fileID: 4473755838602378}
   projectileSpeed: 10
-  projectilesInHierarchy: {fileID: 0}
 --- !u!114 &114211497335152512
 MonoBehaviour:
   m_ObjectHideFlags: 1
