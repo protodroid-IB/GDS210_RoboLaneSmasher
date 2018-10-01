@@ -14,13 +14,15 @@ public class GameController : MonoBehaviour
     [SerializeField]
     private BaseHealth playerBase, enemyBase;
 
-    private bool isPaused = false;
+    private GameOverScreen gameOverScreen;
+
+    private bool isPaused = false, gameOver = false;
 
 
     // Use this for initialization
     void Awake ()
     {
-
+        gameOverScreen = GetComponent<GameOverScreen>();
     }
 	
 
@@ -37,9 +39,30 @@ public class GameController : MonoBehaviour
         return isPaused;
     }
 
+    public void SetGameOver(bool inOver)
+    {
+        gameOver = inOver;
+    }
+
+    public bool GameOver()
+    {
+        return gameOver;
+    }
 
 
 
+    public void SetBattleWinner(Commander inCommander)
+    {
+        if(inCommander == Commander.Player)
+        {
+            gameOverScreen.GameOverPlayerWins();
+        }
+        else
+        {
+            gameOverScreen.GameOverEnemyWins();
+        }
+    }
+    
 
 
 
