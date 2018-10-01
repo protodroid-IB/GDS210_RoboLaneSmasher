@@ -6850,6 +6850,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameOverGO: {fileID: 905230671}
+  scoreValue: {fileID: 463733855}
+  battleConditionValue: {fileID: 2054207115}
 --- !u!1 &1514482538
 GameObject:
   m_ObjectHideFlags: 0

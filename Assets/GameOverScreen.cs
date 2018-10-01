@@ -2,24 +2,32 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using TMPro;
+
 
 public class GameOverScreen : MonoBehaviour
 {
     [SerializeField]
     private GameObject gameOverGO;
 
+    [SerializeField]
+    private TextMeshProUGUI scoreValue, battleConditionValue;
+    
+
+
     public void GameOverPlayerWins()
     {
         GameOver();
-        // set UI text winner
-        // find and set UI score
+        battleConditionValue.text = "YOU WIN!!!";
+        scoreValue.text = "100";
     }
 
     public void GameOverEnemyWins()
     {
         GameOver();
-        // set UI text winner
-        // find and set UI score
+        battleConditionValue.text = "YOU LOSE!!!";
+        scoreValue.text = "100";
     }
 
     private void GameOver()
