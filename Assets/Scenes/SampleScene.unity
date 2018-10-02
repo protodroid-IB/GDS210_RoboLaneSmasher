@@ -7317,9 +7317,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerStartScrap: 500
-  enemyStartScrap: 400
+  enemyStartScrap: 350
   scrapOngoingIncome: 10
-  scrapIncomeTime: 4
+  scrapIncomeTime: 5
   advanceToMediumExp: 1000
   advanceToHeavyExp: 3000
   scrapValue: {fileID: 43556051}
