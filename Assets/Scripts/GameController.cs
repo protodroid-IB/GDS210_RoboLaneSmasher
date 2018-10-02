@@ -19,7 +19,8 @@ public class GameController : MonoBehaviour
 
     private bool isPaused = false, gameOver = false;
 
-
+    [SerializeField]
+    private GameObject gameStartScreen;
 
 
     // Use this for initialization
@@ -172,6 +173,12 @@ public class GameController : MonoBehaviour
     public GameState GetCurrentGameState()
     {
         return currentGameState;
+    }
+
+    public void StartGame()
+    {
+        currentGameState = GameState.InGame;
+        gameStartScreen.SetActive(false);
     }
 }
 
