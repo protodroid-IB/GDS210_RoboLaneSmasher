@@ -332,6 +332,7 @@ public class BaseUnit : MonoBehaviour
     private void Death()
     {
         unitAnimator.SetTrigger("Death");
+        soundBoard.UnitExplodeSound(ref unitAudioSources[1]);
         Invoke("Kill", 2f);
     }
 

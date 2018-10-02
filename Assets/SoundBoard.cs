@@ -12,7 +12,7 @@ public class SoundBoard : MonoBehaviour
 
 
     [SerializeField]
-    private AudioClip unitMoveSound, unitShootSound;
+    private AudioClip unitConstructedSound, unitMoveSound, unitShootSound, unitExplodeSound;
 
 	// Use this for initialization
 	void Start ()
@@ -61,5 +61,26 @@ public class SoundBoard : MonoBehaviour
         buttonSelectAudioSource.clip = advanceWeightClass;
         buttonSelectAudioSource.loop = false;
         buttonSelectAudioSource.Play();
+    }
+
+
+
+    public void UnitExplodeSound(ref AudioSource inAudioSource)
+    {
+        if(inAudioSource.clip != unitExplodeSound)
+        {
+            inAudioSource.clip = unitExplodeSound;
+            inAudioSource.loop = false;
+            inAudioSource.Play();
+        }
+        
+    }
+
+
+    public void UnitConstructedSound(ref AudioSource inAudioSource)
+    {
+            inAudioSource.clip = unitConstructedSound;
+            inAudioSource.loop = false;
+            inAudioSource.Play();
     }
 }
