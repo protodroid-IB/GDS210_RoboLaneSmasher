@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
+    private GameState currentGameState = GameState.Begin;
 
     private WeightClass playerWeightClass = WeightClass.Light;
     private WeightClass enemyWeightClass = WeightClass.Light;
@@ -19,13 +20,21 @@ public class GameController : MonoBehaviour
     private bool isPaused = false, gameOver = false;
 
 
+
+
     // Use this for initialization
     void Awake ()
     {
         gameOverScreen = GetComponent<GameOverScreen>();
     }
-	
 
+
+
+
+    private void Update()
+    {
+
+    }
 
 
     public void SetPaused(bool inPaused)
@@ -61,6 +70,8 @@ public class GameController : MonoBehaviour
         {
             gameOverScreen.GameOverEnemyWins();
         }
+
+        currentGameState = GameState.End;
     }
 
     public int GetPlayerScore()
@@ -155,6 +166,12 @@ public class GameController : MonoBehaviour
         {
             Debug.Log("\t" + inList[i].name + "\n");
         }
+    }
+
+
+    public GameState GetCurrentGameState()
+    {
+        return currentGameState;
     }
 }
 

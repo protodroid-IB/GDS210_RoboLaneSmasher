@@ -20,61 +20,65 @@ public class EnemySpawnController : SpawnController
 	// Update is called once per frame
 	void Update ()
     {
-		if(firstUnit == true)
+        if(gameController.GetCurrentGameState() == GameState.InGame)
         {
-            SpawnMeleeUnit();
-            firstUnit = false;
-            ResetTimerVariables();
-        }
-        else
-        {
-            if(timer >= timeBetweenUnits)
+            if (firstUnit == true)
             {
-                AdvanceToNextWeightClass();
-
-                if(!IsBuildQueueFull())
-                {
-                    switch(LastUnitTypeBuilt())
-                    {
-                        case UnitType.Melee:
-                            if(CanAfford(UnitType.Melee))
-                            {
-                                meleeProbability -= 14;
-                                rangedProbability += 10;
-                                flyingProbability += 4;
-                                SpawnUnitOnChance(meleeProbability, rangedProbability, flyingProbability);
-                            }
-                            break;
-
-                        case UnitType.Ranged:
-                            if(CanAfford(UnitType.Ranged))
-                            {
-                                meleeProbability += 6;
-                                rangedProbability -= 14;
-                                flyingProbability += 8;
-                                SpawnUnitOnChance(meleeProbability, rangedProbability, flyingProbability);
-                            }
-                            break;
-
-                        case UnitType.Flying:
-                            if(CanAfford(UnitType.Flying))
-                            {
-                                meleeProbability += 10;
-                                rangedProbability += 5;
-                                flyingProbability -= 15;
-                                SpawnUnitOnChance(meleeProbability, rangedProbability, flyingProbability);
-                            }
-                            break;
-
-                        default:
-                            if(CanAfford(UnitType.Melee)) SpawnRandomUnit();
-                            break;
-                    }
-                } 
+                SpawnMeleeUnit();
+                firstUnit = false;
+                ResetTimerVariables();
             }
+            else
+            {
+                if (timer >= timeBetweenUnits)
+                {
+                    AdvanceToNextWeightClass();
 
-            timer += Time.deltaTime;
+                    if (!IsBuildQueueFull())
+                    {
+                        switch (LastUnitTypeBuilt())
+                        {
+                            case UnitType.Melee:
+                                if (CanAfford(UnitType.Melee))
+                                {
+                                    meleeProbability -= 14;
+                                    rangedProbability += 10;
+                                    flyingProbability += 4;
+                                    SpawnUnitOnChance(meleeProbability, rangedProbability, flyingProbability);
+                                }
+                                break;
+
+                            case UnitType.Ranged:
+                                if (CanAfford(UnitType.Ranged))
+                                {
+                                    meleeProbability += 6;
+                                    rangedProbability -= 14;
+                                    flyingProbability += 8;
+                                    SpawnUnitOnChance(meleeProbability, rangedProbability, flyingProbability);
+                                }
+                                break;
+
+                            case UnitType.Flying:
+                                if (CanAfford(UnitType.Flying))
+                                {
+                                    meleeProbability += 10;
+                                    rangedProbability += 5;
+                                    flyingProbability -= 15;
+                                    SpawnUnitOnChance(meleeProbability, rangedProbability, flyingProbability);
+                                }
+                                break;
+
+                            default:
+                                if (CanAfford(UnitType.Melee)) SpawnRandomUnit();
+                                break;
+                        }
+                    }
+                }
+
+                timer += Time.deltaTime;
+            }
         }
+		
 	}
 
 
@@ -86,7 +90,7 @@ public class EnemySpawnController : SpawnController
         CreateUnit(gameController.GetEnemyWeightClass(), UnitType.Melee);
         lastUnitType = UnitType.Melee;
         ResetTimerVariables();
-        Debug.Log("Enemy Scrap: " + resourceController.GetEnemyScrap());
+        //Debug.Log("Enemy Scrap: " + resourceController.GetEnemyScrap());
     }
 
     private void SpawnRangedUnit()
@@ -94,7 +98,7 @@ public class EnemySpawnController : SpawnController
         CreateUnit(gameController.GetEnemyWeightClass(), UnitType.Ranged);
         lastUnitType = UnitType.Ranged;
         ResetTimerVariables();
-        Debug.Log("Enemy Scrap: " + resourceController.GetEnemyScrap());
+        //Debug.Log("Enemy Scrap: " + resourceController.GetEnemyScrap());
     }
 
     private void SpawnFlyingUnit()
@@ -102,7 +106,7 @@ public class EnemySpawnController : SpawnController
         CreateUnit(gameController.GetEnemyWeightClass(), UnitType.Flying);
         lastUnitType = UnitType.Flying;
         ResetTimerVariables();
-        Debug.Log("Enemy Scrap: " + resourceController.GetEnemyScrap());
+        //Debug.Log("Enemy Scrap: " + resourceController.GetEnemyScrap());
     }
 
     private void AdvanceToNextWeightClass()
@@ -111,7 +115,7 @@ public class EnemySpawnController : SpawnController
         {
             gameController.AdvanceEnemyWeightClass();
             resourceController.SetEnemyCanAdvance(false);
-            Debug.Log("Enemy Weight Class Advanced: " + gameController.GetEnemyWeightClass().ToString());
+            //Debug.Log("Enemy Weight Class Advanced: " + gameController.GetEnemyWeightClass().ToString());
         }
     }
 
@@ -174,7 +178,6 @@ public class EnemySpawnController : SpawnController
 
 
 
-    // 40, 40, 20
     private void SpawnUnitOnChance(int meleeChance, int rangedChance, int flyingChance)
     {
         float totalPoints = meleeChance + rangedChance + flyingChance;
@@ -191,7 +194,7 @@ public class EnemySpawnController : SpawnController
         float ranged = (float)rangedChance / totalPoints;
         float flying = (float)flyingChance / totalPoints;
 
-        Debug.Log("Melee Chance: " + melee + "\tRanged Chance: " + ranged + "\tFlying Chance: " + flying);
+        //Debug.Log("Melee Chance: " + melee + "\tRanged Chance: " + ranged + "\tFlying Chance: " + flying);
 
         if(d100Normalised <= melee)
         {

@@ -7,16 +7,19 @@ public class PlayerSpawnController : SpawnController
 
     public void SpawnMeleeUnit()
     {
-        CreateUnit(gameController.GetPlayerWeightClass(), UnitType.Melee);
+        if(gameController.GetCurrentGameState() == GameState.InGame)
+            CreateUnit(gameController.GetPlayerWeightClass(), UnitType.Melee);
     }
 
     public void SpawnRangedUnit()
     {
-        CreateUnit(gameController.GetPlayerWeightClass(), UnitType.Ranged);
+        if (gameController.GetCurrentGameState() == GameState.InGame)
+            CreateUnit(gameController.GetPlayerWeightClass(), UnitType.Ranged);
     }
 
     public void SpawnFlyingUnit()
     {
-        CreateUnit(gameController.GetPlayerWeightClass(), UnitType.Flying);
+        if (gameController.GetCurrentGameState() == GameState.InGame)
+            CreateUnit(gameController.GetPlayerWeightClass(), UnitType.Flying);
     } 
 }

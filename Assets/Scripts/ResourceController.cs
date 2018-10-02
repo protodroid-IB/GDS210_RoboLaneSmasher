@@ -18,7 +18,16 @@ public class ResourceController : MonoBehaviour
     [SerializeField]
     private int enemyStartScrap;
 
+    [SerializeField]
+    private int scrapOngoingIncome = 10;
+
+    [SerializeField]
+    private float scrapIncomeTime = 4f;
+
+    private float scrapIncomeTimer = 0f;
+
     private int playerScrap, enemyScrap;
+
 
     [Space(5)]
     [Header("EXPERIENCE NEEDED TO ADVANCE TO NEXT WEIGHT CLASS")]
@@ -88,11 +97,25 @@ public class ResourceController : MonoBehaviour
         UpdateAdvanceClassUI(advanceDisabledColor, false);
 
         UpdateWeightClassIconsUI(gameController.GetPlayerWeightClass());
+
     }
 
 
 
+    private void Update()
+    {
+        if(gameController.GetCurrentGameState() == GameState.InGame)
+        {
+            if (scrapIncomeTimer >= scrapIncomeTime)
+            {
+                AddScrapAtConstantRate();
+                scrapIncomeTimer = 0f;
+            }
 
+            scrapIncomeTimer += Time.deltaTime;
+        }
+       
+    }
 
 
 
@@ -278,5 +301,12 @@ public class ResourceController : MonoBehaviour
                 weightClassIcon.sprite = weightClassIconSprites[2];
                 break;
         }
+    }
+
+
+    private void AddScrapAtConstantRate()
+    {
+        AddPlayerScrap(scrapOngoingIncome);
+        AddEnemyScrap(scrapOngoingIncome);
     }
 }
