@@ -177,14 +177,19 @@ public class EnemySpawnController : SpawnController
     // 40, 40, 20
     private void SpawnUnitOnChance(int meleeChance, int rangedChance, int flyingChance)
     {
-        float  d100Normalised = (float)D100() / 100f;
+        float totalPoints = meleeChance + rangedChance + flyingChance;
+        float d100Normalised = (float)RollDiceN((int)totalPoints) / totalPoints;
 
         rangedChance = meleeChance + rangedChance;
         flyingChance = rangedChance + flyingChance;
 
-        float melee = (float)meleeChance / (float)flyingChance;
-        float ranged = (float)rangedChance / (float)flyingChance;
-        float flying = 1;
+        if (meleeChance <= 0) meleeChance = 1;
+        if (rangedChance <= 0) rangedChance = 1;
+        if (flyingChance <= 0) flyingChance = 1;
+
+        float melee = (float)meleeChance / totalPoints;
+        float ranged = (float)rangedChance / totalPoints;
+        float flying = (float)flyingChance / totalPoints;
 
         Debug.Log("Melee Chance: " + melee + "\tRanged Chance: " + ranged + "\tFlying Chance: " + flying);
 
@@ -208,9 +213,9 @@ public class EnemySpawnController : SpawnController
 
 
 
-    private int D100()
+    private int RollDiceN(int n)
     {
-        return Random.Range(1, 101);
+        return Random.Range(1, n+1);
     }
 
 

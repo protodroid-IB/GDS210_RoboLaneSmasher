@@ -6443,10 +6443,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a8e03aaf5e39ea4c80b17f0ae074e00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerStartScrap: 5000
-  enemyStartScrap: 150
-  advanceToMediumExp: 100
-  advanceToHeavyExp: 100
+  playerStartScrap: 500
+  enemyStartScrap: 400
+  advanceToMediumExp: 1000
+  advanceToHeavyExp: 3000
   scrapValue: {fileID: 43556051}
   expValue: {fileID: 879675383}
   advanceWeightClassIcon: {fileID: 1211615248}
