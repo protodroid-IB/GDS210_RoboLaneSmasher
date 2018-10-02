@@ -112,6 +112,9 @@ public class BaseUnit : MonoBehaviour
 
 
 
+    private SoundBoard soundBoard;
+    private AudioSource[] unitAudioSources;
+
 
 
     private void Awake()
@@ -120,6 +123,8 @@ public class BaseUnit : MonoBehaviour
         gameController = GameObject.FindWithTag("GameController").GetComponent<GameController>();
         resourceController = GameObject.FindWithTag("GameController").GetComponent<ResourceController>();
         receiveAttackGO = transform.GetChild(1).gameObject;
+        unitAudioSources = GetComponents<AudioSource>();
+        soundBoard = GameObject.FindWithTag("SoundController").GetComponent<SoundBoard>();
     }
 
 
@@ -213,6 +218,8 @@ public class BaseUnit : MonoBehaviour
     {
         // start playing the move animation
         unitAnimator.SetTrigger("Move");
+
+        soundBoard.UnitMoveSound(ref unitAudioSources[0]);
 
         // move the unit in world space
         transform.position += transform.right * moveSpeed * Time.deltaTime;

@@ -27,6 +27,7 @@ public class GameController : MonoBehaviour
     void Awake ()
     {
         gameOverScreen = GetComponent<GameOverScreen>();
+        gameStartScreen.SetActive(true);
     }
 
 

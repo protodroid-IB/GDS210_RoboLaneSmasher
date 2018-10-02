@@ -16,6 +16,7 @@ TagManager:
   - ProjectilesInHierarchy
   - GameMusic
   - Enemy
+  - SoundController
   layers:
   - Default
   - TransparentFX

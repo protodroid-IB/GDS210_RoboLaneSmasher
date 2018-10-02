@@ -22,6 +22,9 @@ public class ShootProjectile : MonoBehaviour
 
     private BaseUnit thisUnit;
 
+    private SoundBoard soundBoard;
+    private AudioSource[] unitAudioSources;
+
 
 
     // Use this for initialization
@@ -29,6 +32,8 @@ public class ShootProjectile : MonoBehaviour
     {
         thisUnit = GetComponent<BaseUnit>();
         projectilesInHierarchy = GameObject.FindWithTag("ProjectilesInHierarchy").transform;
+        soundBoard = GameObject.FindWithTag("SoundController").GetComponent<SoundBoard>();
+        unitAudioSources = GetComponents<AudioSource>();
     }
 	
 
@@ -41,6 +46,8 @@ public class ShootProjectile : MonoBehaviour
         projectile = Instantiate(projectilePrefab, projectileSpawn.position, Quaternion.identity, projectilesInHierarchy);
 
         projectile.GetComponent<ProjectileBehaviour>().SetProjectileDetails(targetTransform, projectileSpeed);
+
+        soundBoard.UnitShootSound(ref unitAudioSources[1]);
     }
 
     
