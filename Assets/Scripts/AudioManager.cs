@@ -1,79 +1,56 @@
-﻿using UnityEngine.Audio;
-using System;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+
 
 public class AudioManager : MonoBehaviour
 {
-    // self reminder for finding audio FindObjectOfType<AudioManager>().Play("Soundname");
-
-    // array of all sounds within the game
-    public Sound[] sounds;
-
-    // keep track of any existing audio managers within the scene
+    // AudioManager audiomanager;
+    // in start audiomanager = AudioManager.instance;
+    // to play sound audioManager.PlaySound("Sound Name")
     public static AudioManager instance;
 
-    public AudioMixer audioMixer;
-    public AudioSource audioSource;
+    [SerializeField]
 
-    void Start()
-    {
-        FindObjectOfType<AudioManager>().Play("RBLStheme");
-            
-    }
+    Sound[] sound; 
 
-    // execute on awake
-    void Awake ()
+	// Use this for initialization
+	void Awake ()
     {
-        // if instance isn't added an audio manager into the scene else if there is double delete it 
-        if (instance == null)
+        DontDestroyOnLoad(gameObject);
+		if (instance == null)
         {
             instance = this;
         }
-        else
+        else if ( instance != this )
         {
             Destroy(gameObject);
-            return;
         }
+	}
 
-        // makes object persistent in all scenes
-        DontDestroyOnLoad(gameObject);
-
-        // makes audio component changable within the audio manager
-        foreach (Sound s in sounds)
+    void Start()
+    {
+        for (int i = 0; i < sound.Length; i++)
         {
-            s.source = gameObject.AddComponent<AudioSource>();
-            s.source.clip = s.clip;
-
-            s.source.volume = s.volume;
-            s.source.pitch = s.pitch;
-            s.source.loop = s.loop;
+            GameObject _go = new GameObject("Sound_" + i + "_" + sound[i].clipName);
+            _go.transform.SetParent(this.transform);
+            sound[i].SetSource(_go.AddComponent<AudioSource>());
         }
+
+        PlaySound("Theme");
     }
-
-    public void Play(string name)
+    
+    public void PlaySound(string _name)
     {
-        Sound s = Array.Find(sounds, sound => sound.name == name);
-
-        // creates an error message whenever a clip in not found 
-        if (s == null)
+		for (int i = 0; i < sound.Length; i++)
         {
-            Debug.LogWarning("Sound:" + name + " not found");
-            return;
+            if (sound[i].clipName == _name)
+            {
+                sound[i].Play();
+                return;
+            }
+            
+            
         }
-        // play audio    
-        s.source.Play();
-    }
-
-    public void SetVolumeSFX(float volume)
-    {
-        audioMixer.SetFloat("SFX", volume);
-    }
-    public void SetVolumeMain(float volume)
-    {
-        audioMixer.SetFloat("Master", volume);
-    }
-    public void SetVolumeMusic(float volume)
-    {
-        audioMixer.SetFloat("Music", volume);
-    }
+	}
 }
