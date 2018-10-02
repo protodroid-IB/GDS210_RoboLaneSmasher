@@ -13,7 +13,14 @@ public class AudioManager : MonoBehaviour
     public static AudioManager instance;
 
     public AudioMixer audioMixer;
-    
+    public AudioSource audioSource;
+
+    void Start()
+    {
+        FindObjectOfType<AudioManager>().Play("RBLStheme");
+            
+    }
+
     // execute on awake
     void Awake ()
     {

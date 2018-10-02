@@ -35,9 +35,4 @@ public class Menu : MonoBehaviour
         FindObjectOfType<AudioManager>().Play("ButtonSelect");
     }
 
-    public void Hover()
-    {
-        FindObjectOfType<AudioManager>().Play("ButtonHover");
-    }
-
 }
