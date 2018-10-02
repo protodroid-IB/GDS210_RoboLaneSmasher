@@ -70,13 +70,13 @@ public class BuildQueue : MonoBehaviour
 
             // add that build to the queue
             buildQueue.Add(newBuild);
-            iconArray[nextEmptyIndex] = inIcon;
+            if (gameObject.tag == "Player") iconArray[nextEmptyIndex] = inIcon;
             emptyArray[nextEmptyIndex] = false;
 
             nextEmptyIndex++;
 
             // update UI
-            buildQueueUI.UpdateUI(emptyArray, iconArray);
+            if (gameObject.tag == "Player") buildQueueUI.UpdateUI(emptyArray, iconArray);
         }
 
     }
@@ -139,7 +139,7 @@ public class BuildQueue : MonoBehaviour
                 
 
                 emptyArray[nextEmptyIndex] = true; // set as empty 
-                iconArray[nextEmptyIndex] = null; // set icon as null
+                if (gameObject.tag == "Player") iconArray[nextEmptyIndex] = null; // set icon as null
                 buildTimer = 0f; // reset the build timer
 
 
@@ -167,13 +167,15 @@ public class BuildQueue : MonoBehaviour
     {
         GameObject newUnitGO = Instantiate(buildQueue[0].prefab, buildQueue[0].position, buildQueue[0].rotation, buildQueue[0].parent);
 
-        if(newUnitGO.GetComponent<BaseUnit>().GetCommander() == Commander.Player)
+        if (gameObject.tag == "Player")
         {
             gameController.AddPlayerUnit(newUnitGO);
+            newUnitGO.GetComponent<BaseUnit>().SetCommander(Commander.Player);
         }
         else
         {
             gameController.AddEnemyUnit(newUnitGO);
+            newUnitGO.GetComponent<BaseUnit>().SetCommander(Commander.Enemy);
         }
         
     }

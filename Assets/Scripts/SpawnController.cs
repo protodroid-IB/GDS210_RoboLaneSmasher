@@ -11,7 +11,7 @@ public class SpawnController : MonoBehaviour
     public ResourceController resourceController;
     public BuildQueue buildQueue;
 
-    private UnitDatabase unitDatabase;
+    public UnitDatabase unitDatabase;
 
     [SerializeField]
     private Transform spawnPos, unitsInHierarchy;
@@ -54,7 +54,7 @@ public class SpawnController : MonoBehaviour
             }
             else if(commander == Commander.Enemy)
             {
-                buildQueue.AddToQueue(newUnit.prefab, spawnPos.position - newUnit.prefab.transform.localPosition, enemyRotation, unitsInHierarchy, buildTime, unitIcon);
+                buildQueue.AddToQueue(newUnit.prefab, new Vector3(spawnPos.position.x - newUnit.prefab.transform.localPosition.x, spawnPos.position.y + newUnit.prefab.transform.localPosition.y, spawnPos.position.z) , enemyRotation, unitsInHierarchy, buildTime, unitIcon);
                 resourceController.SubtractEnemyScrap(buildCost);
             }
             

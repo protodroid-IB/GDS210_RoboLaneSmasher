@@ -7,24 +7,85 @@ public class EnemySpawnController : SpawnController
     private bool firstUnit = true;
     private UnitType lastUnitType = UnitType.Melee;
 
+    [SerializeField]
+    private float minTimeBetweenUnits = 1f, maxTimeBetweenUnits = 3f;
+    private float timeBetweenUnits = 1f;
+    private float timer = 0f;
 
-	// Use this for initialization
-	void Start ()
-    {
-      
+    private int meleeProbability = 40;
+    private int rangedProbability = 30;
+    private int flyingProbability = 30;
 
-    }
 	
 	// Update is called once per frame
 	void Update ()
     {
-		
+		if(firstUnit == true)
+        {
+            SpawnMeleeUnit();
+            firstUnit = false;
+            ResetTimerVariables();
+        }
+        else
+        {
+            if(timer >= timeBetweenUnits)
+            {
+                AdvanceToNextWeightClass();
+
+                if(!IsBuildQueueFull())
+                {
+                    switch(LastUnitTypeBuilt())
+                    {
+                        case UnitType.Melee:
+                            if(CanAfford(UnitType.Melee))
+                            {
+                                meleeProbability -= 14;
+                                rangedProbability += 10;
+                                flyingProbability += 4;
+                                SpawnUnitOnChance(meleeProbability, rangedProbability, flyingProbability);
+                            }
+                            break;
+
+                        case UnitType.Ranged:
+                            if(CanAfford(UnitType.Ranged))
+                            {
+                                meleeProbability += 6;
+                                rangedProbability -= 14;
+                                flyingProbability += 8;
+                                SpawnUnitOnChance(meleeProbability, rangedProbability, flyingProbability);
+                            }
+                            break;
+
+                        case UnitType.Flying:
+                            if(CanAfford(UnitType.Flying))
+                            {
+                                meleeProbability += 10;
+                                rangedProbability += 5;
+                                flyingProbability -= 15;
+                                SpawnUnitOnChance(meleeProbability, rangedProbability, flyingProbability);
+                            }
+                            break;
+
+                        default:
+                            if(CanAfford(UnitType.Melee)) SpawnRandomUnit();
+                            break;
+                    }
+                } 
+            }
+
+            timer += Time.deltaTime;
+        }
 	}
+
+
+
+
 
     private void SpawnMeleeUnit()
     {
         CreateUnit(gameController.GetEnemyWeightClass(), UnitType.Melee);
         lastUnitType = UnitType.Melee;
+        ResetTimerVariables();
         Debug.Log("Enemy Scrap: " + resourceController.GetEnemyScrap());
     }
 
@@ -32,13 +93,15 @@ public class EnemySpawnController : SpawnController
     {
         CreateUnit(gameController.GetEnemyWeightClass(), UnitType.Ranged);
         lastUnitType = UnitType.Ranged;
+        ResetTimerVariables();
         Debug.Log("Enemy Scrap: " + resourceController.GetEnemyScrap());
     }
 
     private void SpawnFlyingUnit()
     {
         CreateUnit(gameController.GetEnemyWeightClass(), UnitType.Flying);
-        lastUnitType = UnitType.Ranged;
+        lastUnitType = UnitType.Flying;
+        ResetTimerVariables();
         Debug.Log("Enemy Scrap: " + resourceController.GetEnemyScrap());
     }
 
@@ -62,9 +125,17 @@ public class EnemySpawnController : SpawnController
         return buildQueue.IsFull();
     }
 
-    private bool CanAfford(int inCost, int inAvailableFunds)
+
+
+
+    private bool CanAfford(UnitType inType)
     {
-        if(inCost <= inAvailableFunds)
+        Unit newUnit = unitDatabase.FindUnit(gameController.GetEnemyWeightClass(), inType); // grab the unit from the database 
+        BaseUnit newUnitDetails = newUnit.prefab.GetComponent<BaseUnit>();
+
+        int buildCost = newUnitDetails.GetBuildCost(); // grab the cost to build the unit
+
+        if (buildCost <= resourceController.GetEnemyScrap())
         {
             return true;
         }
@@ -73,4 +144,80 @@ public class EnemySpawnController : SpawnController
     }
 
 
+
+
+    private void SpawnRandomUnit()
+    {
+        // 1 = melee, 2 = ranged, 3 = flying
+        int unitNum = Random.Range(1, 4);
+
+        switch(unitNum)
+        {
+            case 1:
+                SpawnMeleeUnit();
+                break;
+
+            case 2:
+                SpawnRangedUnit();
+                break;
+
+            case 3:
+                SpawnFlyingUnit();
+                break;
+
+            default:
+                SpawnMeleeUnit();
+                break;
+        }
+    }
+
+
+
+
+    // 40, 40, 20
+    private void SpawnUnitOnChance(int meleeChance, int rangedChance, int flyingChance)
+    {
+        float  d100Normalised = (float)D100() / 100f;
+
+        rangedChance = meleeChance + rangedChance;
+        flyingChance = rangedChance + flyingChance;
+
+        float melee = (float)meleeChance / (float)flyingChance;
+        float ranged = (float)rangedChance / (float)flyingChance;
+        float flying = 1;
+
+        Debug.Log("Melee Chance: " + melee + "\tRanged Chance: " + ranged + "\tFlying Chance: " + flying);
+
+        if(d100Normalised <= melee)
+        {
+            SpawnMeleeUnit();
+        }
+        else if(d100Normalised > melee && d100Normalised <= ranged)
+        {
+            SpawnRangedUnit();
+        }
+        else if(d100Normalised > ranged && d100Normalised <= flying)
+        {
+            SpawnFlyingUnit();
+        }
+        else
+        {
+            SpawnRandomUnit();
+        }
+    }
+
+
+
+    private int D100()
+    {
+        return Random.Range(1, 101);
+    }
+
+
+
+    private void ResetTimerVariables()
+    {
+        timer = 0f;
+        timeBetweenUnits = Random.Range(minTimeBetweenUnits, maxTimeBetweenUnits);
+    }
 }

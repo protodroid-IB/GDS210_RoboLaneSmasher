@@ -9,7 +9,7 @@ public class BaseUnit : MonoBehaviour
 
     private UnitStates unitState = UnitStates.Move; // the current state of the unit
 
-
+    private GameObject receiveAttackGO;
 
     // THE COMMANDER OF THIS UNIT (PLAYER OR ENEMY)
     [Header("CHOOSE THE COMMANDER: ")]
@@ -119,15 +119,7 @@ public class BaseUnit : MonoBehaviour
         unitAnimator = GetComponent<Animator>(); // grab the animator 
         gameController = GameObject.FindWithTag("GameController").GetComponent<GameController>();
         resourceController = GameObject.FindWithTag("GameController").GetComponent<ResourceController>();
-
-        if(commander == Commander.Player)
-        {
-            baseTag = "EnemyBase";
-        }
-        else if (commander == Commander.Enemy)
-        {
-            baseTag = "PlayerBase";
-        }
+        receiveAttackGO = transform.GetChild(1).gameObject;
     }
 
 
@@ -145,10 +137,14 @@ public class BaseUnit : MonoBehaviour
         if (commander == Commander.Player)
         {
             attackLayerMask = 1 << 9;
+            baseTag = "EnemyBase";
+            receiveAttackGO.layer = 10;
         }
         else
         {
             attackLayerMask = 1 << 10;
+            baseTag = "PlayerBase";
+            receiveAttackGO.layer = 9;
         }
 
         attackRate = 1f / hitPerSecond; // calculate the time between attacks
