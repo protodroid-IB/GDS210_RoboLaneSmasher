@@ -1142,6 +1142,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   preventBuild: {fileID: 1860926159}
+  baseAnimator: {fileID: 466518069}
 --- !u!1 &101793981
 GameObject:
   m_ObjectHideFlags: 0
@@ -2991,6 +2992,29 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 70f363b314cf59c4fa2050ad2ee3c8e2, type: 2}
   m_IsPrefabAsset: 0
+--- !u!1 &466518068 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1855377975048182, guid: 70f363b314cf59c4fa2050ad2ee3c8e2,
+    type: 2}
+  m_PrefabInternal: {fileID: 466518067}
+--- !u!95 &466518069
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 466518068}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f10906b57437aec4eaa8a7f5dc05fa33, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &500991429
 GameObject:
   m_ObjectHideFlags: 0
@@ -8965,6 +8989,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   preventBuild: {fileID: 193915135}
+  baseAnimator: {fileID: 1168255673}
 --- !u!114 &1695020511
 MonoBehaviour:
   m_ObjectHideFlags: 0

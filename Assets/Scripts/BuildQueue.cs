@@ -35,6 +35,12 @@ public class BuildQueue : MonoBehaviour
     private AudioSource baseAudioSource;
 
 
+    [SerializeField]
+    private Animator baseAnimator;
+
+    private bool baseOpen = false;
+
+
     private void Start()
     {
         gameController = GameObject.FindWithTag("GameController").GetComponent<GameController>();
@@ -164,6 +170,8 @@ public class BuildQueue : MonoBehaviour
         }
 
         if (gameObject.tag == "Player") buildQueueUI.UpdateBuildProgressUI(GetBuildProgressRatio());
+
+        UpdateBaseAnimation();
     }
 
 
@@ -201,6 +209,31 @@ public class BuildQueue : MonoBehaviour
         }
 
         else return buildTimer;
+    }
+
+
+
+    private void UpdateBaseAnimation()
+    {
+        if (IsEmpty())
+        {
+            if (baseOpen == true)
+            {
+                baseAnimator.SetTrigger("Close");
+                baseOpen = false;
+            }
+         
+        }
+        else
+        {
+            if (baseOpen == false)
+            {
+                baseAnimator.SetTrigger("Open");
+                baseOpen = true;
+            }
+           
+        }
+      
     }
 
 
