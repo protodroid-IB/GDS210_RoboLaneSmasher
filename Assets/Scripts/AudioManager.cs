@@ -49,8 +49,6 @@ public class AudioManager : MonoBehaviour
                 sound[i].Play();
                 return;
             }
-            
-            
         }
 	}
 }
