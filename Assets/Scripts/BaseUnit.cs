@@ -223,7 +223,7 @@ public class BaseUnit : MonoBehaviour
         // start playing the move animation
         unitAnimator.SetTrigger("Move");
 
-        audioManager.PlaySound("Moving 1", unitAudioSources[0]);
+        audioManager.PlaySound("Moving1", unitAudioSources[0]);
 
         // move the unit in world space
         transform.position += transform.right * moveSpeed * Time.deltaTime;
@@ -336,7 +336,7 @@ public class BaseUnit : MonoBehaviour
     private void Death()
     {
         unitAnimator.SetTrigger("Death");
-        audioManager.PlaySound("Explosion2");
+        audioManager.PlaySound("Explosion2", unitAudioSources[1]);
         Invoke("Kill", 2f);
     }
 
