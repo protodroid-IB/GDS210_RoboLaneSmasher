@@ -31,6 +31,7 @@ public class Menu : MonoBehaviour
         }
 
     }
+
     public void Play()
     {
         SceneManager.LoadScene("Game");
@@ -77,5 +78,4 @@ public class Menu : MonoBehaviour
         AudioListener.pause = !AudioListener.pause;
         audioManager.isMuted = !audioManager.isMuted;
     }
-
 }
