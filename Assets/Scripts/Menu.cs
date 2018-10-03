@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Audio;
+using UnityEngine.UI;
 
 
 public class Menu : MonoBehaviour
@@ -17,9 +18,18 @@ public class Menu : MonoBehaviour
 
     public AudioMixer audioMixer;
 
+    [SerializeField]
+    private Toggle muteToggle;
+
     void Start()
     {
         audioManager = AudioManager.instance;
+
+        if(audioManager.isMuted)
+        {
+            muteToggle.isOn = true;
+        }
+
     }
     public void Play()
     {
@@ -65,6 +75,7 @@ public class Menu : MonoBehaviour
     public void Mute()
     {
         AudioListener.pause = !AudioListener.pause;
+        audioManager.isMuted = !audioManager.isMuted;
     }
 
 }

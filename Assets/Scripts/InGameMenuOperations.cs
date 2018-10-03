@@ -12,11 +12,27 @@ public class InGameMenuOperations : MonoBehaviour
     [SerializeField]
     private Sprite[] muteIconSpriteArray;
 
+    private AudioManager audioManager;
+
+    private void Start()
+    {
+        audioManager = AudioManager.instance;
+
+        UpdateMuteUI(audioManager.isMuted);
+    }
+
     public void Mute()
     {
         AudioListener.pause = !AudioListener.pause;
 
-        if (muteIcon.sprite == muteIconSpriteArray[0]) muteIcon.sprite = muteIconSpriteArray[1];
+        audioManager.isMuted = !audioManager.isMuted;
+
+        UpdateMuteUI(audioManager.isMuted);
+    }
+
+    private void UpdateMuteUI(bool muted)
+    {
+        if (muted) muteIcon.sprite = muteIconSpriteArray[1];
         else muteIcon.sprite = muteIconSpriteArray[0];
     }
 

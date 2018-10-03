@@ -17,6 +17,7 @@ TagManager:
   - GameMusic
   - Enemy
   - SoundController
+  - MuteToggle
   layers:
   - Default
   - TransparentFX
