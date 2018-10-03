@@ -32,6 +32,8 @@ public class GameController : MonoBehaviour
         gameStartScreen.SetActive(true);
 
         audioManager = AudioManager.instance;
+
+        Time.timeScale = 1f;
     }
 
 
