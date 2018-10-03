@@ -22,6 +22,8 @@ public class ShootProjectile : MonoBehaviour
 
     private BaseUnit thisUnit;
 
+
+    private AudioManager audioManager;
     private SoundBoard soundBoard;
     private AudioSource[] unitAudioSources;
 
@@ -32,6 +34,8 @@ public class ShootProjectile : MonoBehaviour
     {
         thisUnit = GetComponent<BaseUnit>();
         projectilesInHierarchy = GameObject.FindWithTag("ProjectilesInHierarchy").transform;
+
+        audioManager = AudioManager.instance;
         soundBoard = GameObject.FindWithTag("SoundController").GetComponent<SoundBoard>();
         unitAudioSources = GetComponents<AudioSource>();
     }
@@ -47,7 +51,7 @@ public class ShootProjectile : MonoBehaviour
 
         projectile.GetComponent<ProjectileBehaviour>().SetProjectileDetails(targetTransform, projectileSpeed);
 
-        soundBoard.UnitShootSound(ref unitAudioSources[1]);
+        audioManager.PlaySound("Fire1", unitAudioSources[1]);
     }
 
     

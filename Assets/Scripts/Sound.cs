@@ -21,7 +21,9 @@ public class Sound
     public bool oneShot = false;
 
     [Range(0f, 1f)]
-    public float spatial;
+    public float spatial = 0;
+
+    public float minDistance3Dsound = 1f, maxDistance3DSound = 5f;
 
 
 
@@ -36,6 +38,8 @@ public class Sound
         source.loop = loop;
         source.outputAudioMixerGroup = audioMixerGroup;
         source.spatialBlend = spatial;
+        source.minDistance = minDistance3Dsound;
+        source.maxDistance = maxDistance3DSound;
     }
 
     public void Play()
