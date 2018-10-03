@@ -18,6 +18,7 @@ public class Sound
 
     public bool loop =  false;
     public bool playOnAwake = false;
+    public bool oneShot = false;
 
     
 
@@ -33,6 +34,11 @@ public class Sound
 
     public void Play()
     {
-        source.Play();
+        if (oneShot == true)
+        {
+            if(!source.isPlaying)
+                source.Play();
+        }
+        else source.Play();
     }
 }
