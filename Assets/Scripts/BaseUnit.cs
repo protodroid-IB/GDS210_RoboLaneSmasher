@@ -113,8 +113,6 @@ public class BaseUnit : MonoBehaviour
 
 
     private AudioManager audioManager;
-
-    private SoundBoard soundBoard;
     private AudioSource[] unitAudioSources;
 
 
@@ -128,7 +126,6 @@ public class BaseUnit : MonoBehaviour
 
         audioManager = AudioManager.instance;
         unitAudioSources = GetComponents<AudioSource>();
-        soundBoard = GameObject.FindWithTag("SoundController").GetComponent<SoundBoard>();
     }
 
 

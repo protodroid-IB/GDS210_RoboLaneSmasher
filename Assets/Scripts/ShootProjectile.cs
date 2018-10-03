@@ -24,7 +24,6 @@ public class ShootProjectile : MonoBehaviour
 
 
     private AudioManager audioManager;
-    private SoundBoard soundBoard;
     private AudioSource[] unitAudioSources;
 
 
@@ -36,7 +35,6 @@ public class ShootProjectile : MonoBehaviour
         projectilesInHierarchy = GameObject.FindWithTag("ProjectilesInHierarchy").transform;
 
         audioManager = AudioManager.instance;
-        soundBoard = GameObject.FindWithTag("SoundController").GetComponent<SoundBoard>();
         unitAudioSources = GetComponents<AudioSource>();
     }
 	

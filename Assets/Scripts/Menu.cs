@@ -34,25 +34,25 @@ public class Menu : MonoBehaviour
     public void Play()
     {
         SceneManager.LoadScene("SampleScene");
-        audioManager.PlaySound("ButtonSelect");
+        audioManager.PlaySound("ButtonSelect1");
     }
     public void Options()
     {
         menuPanel.SetActive(false);
         optionsPanel.SetActive(true);
-        audioManager.PlaySound("ButtonSelect");
+        audioManager.PlaySound("ButtonSelect1");
     }
     public void MainMenu()
     {
         menuPanel.SetActive(true);
         optionsPanel.SetActive(false);
-        audioManager.PlaySound("ButtonSelect");
+        audioManager.PlaySound("ButtonSelect1");
     }
     public void Quit()
     {
         Debug.Log("App Quit");
         Application.Quit();
-        audioManager.PlaySound("ButtonSelect");
+        audioManager.PlaySound("ButtonSelect1");
     }
     public void Hover()
     {

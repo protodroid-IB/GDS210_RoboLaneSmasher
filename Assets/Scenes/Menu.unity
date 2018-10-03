@@ -570,6 +570,11 @@ Prefab:
       propertyPath: sound.Array.data[17].maxDistance3DSound
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 114701663478557586, guid: 0ffc2199727117047ab85b8106f00761,
+        type: 2}
+      propertyPath: sound.Array.data[2].clipName
+      value: ButtonSelect1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0ffc2199727117047ab85b8106f00761, type: 2}
   m_IsPrefabAsset: 0

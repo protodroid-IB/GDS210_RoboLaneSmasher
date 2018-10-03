@@ -22,12 +22,16 @@ public class GameController : MonoBehaviour
     [SerializeField]
     private GameObject gameStartScreen;
 
+    private AudioManager audioManager;
+
 
     // Use this for initialization
     void Awake ()
     {
         gameOverScreen = GetComponent<GameOverScreen>();
         gameStartScreen.SetActive(true);
+
+        audioManager = AudioManager.instance;
     }
 
 
@@ -180,6 +184,17 @@ public class GameController : MonoBehaviour
     {
         currentGameState = GameState.InGame;
         gameStartScreen.SetActive(false);
+    }
+
+
+    public void ButtonSelectSound(int inNum)
+    {
+        audioManager.PlaySound("ButtonSelect" + inNum.ToString());
+    }
+
+    public void AdvanceWeightClassSound()
+    {
+        audioManager.PlaySound("Upgrade2");
     }
 }
 
