@@ -553,12 +553,12 @@ Prefab:
     - target: {fileID: 114701663478557586, guid: 0ffc2199727117047ab85b8106f00761,
         type: 2}
       propertyPath: sound.Array.data[17].spatial
-      value: 0.45
+      value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: 114701663478557586, guid: 0ffc2199727117047ab85b8106f00761,
         type: 2}
       propertyPath: sound.Array.data[2].volume
-      value: 0.8
+      value: 0.35
       objectReference: {fileID: 0}
     - target: {fileID: 114701663478557586, guid: 0ffc2199727117047ab85b8106f00761,
         type: 2}
