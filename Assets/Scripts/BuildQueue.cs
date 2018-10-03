@@ -30,7 +30,7 @@ public class BuildQueue : MonoBehaviour
 
     private float buildTimer = 0f;
 
-    private SoundBoard soundBoard;
+    private AudioManager audioManager;
 
     private AudioSource baseAudioSource;
 
@@ -39,7 +39,7 @@ public class BuildQueue : MonoBehaviour
     {
         gameController = GameObject.FindWithTag("GameController").GetComponent<GameController>();
         buildQueueUI = GameObject.FindWithTag("BuildQueueUI").GetComponent<BuildQueueUI>();
-        soundBoard = GameObject.FindWithTag("SoundController").GetComponent<SoundBoard>();
+        audioManager = AudioManager.instance;
 
         baseAudioSource = GetComponentInChildren<AudioSource>();
 
@@ -125,7 +125,7 @@ public class BuildQueue : MonoBehaviour
             if(buildTimer >= buildQueue[0].buildTime && preventBuild.CanBuild())
             {
                 CreateTheUnit(); // create the unit
-                soundBoard.UnitConstructedSound(ref baseAudioSource);
+                audioManager.PlaySound("BotConstructed",baseAudioSource);
                 buildQueue.RemoveAt(0); // remove the build in the queue
 
                 nextEmptyIndex--; // decrement the next empty index
