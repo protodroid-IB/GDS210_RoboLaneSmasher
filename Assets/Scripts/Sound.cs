@@ -41,4 +41,17 @@ public class Sound
         }
         else source.Play();
     }
+
+
+    public void Play(AudioSource _audioSource)
+    {
+        SetSource(_audioSource);
+
+        if (oneShot == true)
+        {
+            if (!_audioSource.isPlaying)
+                _audioSource.Play();
+        }
+        else _audioSource.Play();
+    }
 }

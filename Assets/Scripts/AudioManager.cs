@@ -53,4 +53,17 @@ public class AudioManager : MonoBehaviour
             }
         }
 	}
+
+
+    public void PlaySound(string _name, AudioSource _audioSource)
+    {
+        for (int i = 0; i < sound.Length; i++)
+        {
+            if (sound[i].clipName == _name)
+            {
+                sound[i].Play(_audioSource);
+                return;
+            }
+        }
+    }
 }
