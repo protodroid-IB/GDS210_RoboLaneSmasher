@@ -20,7 +20,12 @@ public class Sound
     public bool playOnAwake = false;
     public bool oneShot = false;
 
-    
+    [Range(0f, 1f)]
+    public float spatial;
+
+
+
+
 
     public void SetSource(AudioSource _source)
     {
@@ -30,6 +35,7 @@ public class Sound
         source.playOnAwake = playOnAwake;
         source.loop = loop;
         source.outputAudioMixerGroup = audioMixerGroup;
+        source.spatialBlend = spatial;
     }
 
     public void Play()

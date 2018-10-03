@@ -223,7 +223,7 @@ public class BaseUnit : MonoBehaviour
         // start playing the move animation
         unitAnimator.SetTrigger("Move");
 
-        soundBoard.UnitMoveSound(ref unitAudioSources[0]);
+        audioManager.PlaySound("Moving 1", unitAudioSources[0]);
 
         // move the unit in world space
         transform.position += transform.right * moveSpeed * Time.deltaTime;
