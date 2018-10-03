@@ -1177,6 +1177,48 @@ MonoBehaviour:
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   delegates: []
+--- !u!1001 &546300533
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4625813752647226, guid: 0ffc2199727117047ab85b8106f00761, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 648.03033
+      objectReference: {fileID: 0}
+    - target: {fileID: 4625813752647226, guid: 0ffc2199727117047ab85b8106f00761, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 335.68964
+      objectReference: {fileID: 0}
+    - target: {fileID: 4625813752647226, guid: 0ffc2199727117047ab85b8106f00761, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -9.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4625813752647226, guid: 0ffc2199727117047ab85b8106f00761, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4625813752647226, guid: 0ffc2199727117047ab85b8106f00761, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4625813752647226, guid: 0ffc2199727117047ab85b8106f00761, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4625813752647226, guid: 0ffc2199727117047ab85b8106f00761, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4625813752647226, guid: 0ffc2199727117047ab85b8106f00761, type: 2}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 0ffc2199727117047ab85b8106f00761, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1 &570679844
 GameObject:
   m_ObjectHideFlags: 0
@@ -1994,191 +2036,6 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 810751544}
   m_CullTransparentMesh: 0
---- !u!1 &1084394303
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1084394305}
-  - component: {fileID: 1084394304}
-  m_Layer: 0
-  m_Name: AUDIO MANAGER
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1084394304
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1084394303}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a21e7a2d438809c46858a61c862d32c7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sound:
-  - clipName: Theme
-    clip: {fileID: 8300000, guid: 76b939c556b31a84a8e16578bb17cb80, type: 3}
-    audioMixerGroup: {fileID: 243018922083676730, guid: 227a22950e0503f4aa9040afbbc80843,
-      type: 2}
-    volume: 0.163
-    pitch: 0
-    loop: 0
-    playOnAwake: 0
-  - clipName: ButtonHover
-    clip: {fileID: 8300000, guid: 63b13e0f84a2b5f429a4fd512fe9d6ea, type: 3}
-    audioMixerGroup: {fileID: 243715622126396126, guid: 227a22950e0503f4aa9040afbbc80843,
-      type: 2}
-    volume: 1
-    pitch: 0
-    loop: 0
-    playOnAwake: 0
-  - clipName: ButtonSelect
-    clip: {fileID: 8300000, guid: c0959eb06c0f89547af0e1ff26bbed07, type: 3}
-    audioMixerGroup: {fileID: 243715622126396126, guid: 227a22950e0503f4aa9040afbbc80843,
-      type: 2}
-    volume: 1
-    pitch: 0
-    loop: 0
-    playOnAwake: 0
-  - clipName: ButtonSelect2
-    clip: {fileID: 8300000, guid: b60ca2638b8575041bac3c90b72ace6b, type: 3}
-    audioMixerGroup: {fileID: 243715622126396126, guid: 227a22950e0503f4aa9040afbbc80843,
-      type: 2}
-    volume: 1
-    pitch: 0
-    loop: 0
-    playOnAwake: 0
-  - clipName: DoorOpen
-    clip: {fileID: 8300000, guid: 7d85a14efbdfeaa4aa363bd61fc5dde2, type: 3}
-    audioMixerGroup: {fileID: 243715622126396126, guid: 227a22950e0503f4aa9040afbbc80843,
-      type: 2}
-    volume: 1
-    pitch: 0
-    loop: 0
-    playOnAwake: 0
-  - clipName: Explosion1
-    clip: {fileID: 8300000, guid: 8702cd95a041a814c89b2b5c94a3c8c2, type: 3}
-    audioMixerGroup: {fileID: 243715622126396126, guid: 227a22950e0503f4aa9040afbbc80843,
-      type: 2}
-    volume: 1
-    pitch: 0
-    loop: 0
-    playOnAwake: 0
-  - clipName: Explosion2
-    clip: {fileID: 8300000, guid: 5200875a47dabe94d9aa8dd7bcdd9510, type: 3}
-    audioMixerGroup: {fileID: 243715622126396126, guid: 227a22950e0503f4aa9040afbbc80843,
-      type: 2}
-    volume: 1
-    pitch: 0
-    loop: 0
-    playOnAwake: 0
-  - clipName: Explosion3
-    clip: {fileID: 8300000, guid: c0959eb06c0f89547af0e1ff26bbed07, type: 3}
-    audioMixerGroup: {fileID: 243715622126396126, guid: 227a22950e0503f4aa9040afbbc80843,
-      type: 2}
-    volume: 1
-    pitch: 0
-    loop: 0
-    playOnAwake: 0
-  - clipName: Fire1
-    clip: {fileID: 8300000, guid: 50ad895b9f2b6b942abd7730cde58b77, type: 3}
-    audioMixerGroup: {fileID: 243715622126396126, guid: 227a22950e0503f4aa9040afbbc80843,
-      type: 2}
-    volume: 1
-    pitch: 0
-    loop: 0
-    playOnAwake: 0
-  - clipName: Fire2
-    clip: {fileID: 8300000, guid: 20ffcdb0a00f0c04097ce78a79e6ad05, type: 3}
-    audioMixerGroup: {fileID: 243715622126396126, guid: 227a22950e0503f4aa9040afbbc80843,
-      type: 2}
-    volume: 1
-    pitch: 0
-    loop: 0
-    playOnAwake: 0
-  - clipName: Fire3
-    clip: {fileID: 8300000, guid: 40390868fd7536a459402c6f2c8143c9, type: 3}
-    audioMixerGroup: {fileID: 243715622126396126, guid: 227a22950e0503f4aa9040afbbc80843,
-      type: 2}
-    volume: 1
-    pitch: 0
-    loop: 0
-    playOnAwake: 0
-  - clipName: Idle
-    clip: {fileID: 8300000, guid: 3dd8a2c974ce1b844adace9590eedc6b, type: 3}
-    audioMixerGroup: {fileID: 243715622126396126, guid: 227a22950e0503f4aa9040afbbc80843,
-      type: 2}
-    volume: 1
-    pitch: 0
-    loop: 0
-    playOnAwake: 0
-  - clipName: Moving1
-    clip: {fileID: 8300000, guid: cf933a688884cfb4c97a57097e4271d1, type: 3}
-    audioMixerGroup: {fileID: 243715622126396126, guid: 227a22950e0503f4aa9040afbbc80843,
-      type: 2}
-    volume: 1
-    pitch: 0
-    loop: 0
-    playOnAwake: 0
-  - clipName: Moving2
-    clip: {fileID: 8300000, guid: 423783b9061c19f4eb18581d95121266, type: 3}
-    audioMixerGroup: {fileID: 243715622126396126, guid: 227a22950e0503f4aa9040afbbc80843,
-      type: 2}
-    volume: 1
-    pitch: 0
-    loop: 0
-    playOnAwake: 0
-  - clipName: Upgrade1
-    clip: {fileID: 8300000, guid: 349b066030049a64891dfa5958358017, type: 3}
-    audioMixerGroup: {fileID: 243715622126396126, guid: 227a22950e0503f4aa9040afbbc80843,
-      type: 2}
-    volume: 1
-    pitch: 0
-    loop: 0
-    playOnAwake: 0
-  - clipName: Upgrade2
-    clip: {fileID: 8300000, guid: 243c0da14d4709344907f642f8237179, type: 3}
-    audioMixerGroup: {fileID: 243715622126396126, guid: 227a22950e0503f4aa9040afbbc80843,
-      type: 2}
-    volume: 1
-    pitch: 0
-    loop: 0
-    playOnAwake: 0
-  - clipName: Upgrade3
-    clip: {fileID: 8300000, guid: b5666360f35af584c9aa34c3e8488ad7, type: 3}
-    audioMixerGroup: {fileID: 243715622126396126, guid: 227a22950e0503f4aa9040afbbc80843,
-      type: 2}
-    volume: 1
-    pitch: 0
-    loop: 0
-    playOnAwake: 0
-  - clipName: BotConstructed
-    clip: {fileID: 8300000, guid: 47ced4bd66c8c944fb6b1493f5dc5e18, type: 3}
-    audioMixerGroup: {fileID: 243715622126396126, guid: 227a22950e0503f4aa9040afbbc80843,
-      type: 2}
-    volume: 1
-    pitch: 0
-    loop: 0
-    playOnAwake: 0
---- !u!4 &1084394305
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1084394303}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 648.03033, y: 335.68964, z: -9.5}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1131612983
 GameObject:
   m_ObjectHideFlags: 0

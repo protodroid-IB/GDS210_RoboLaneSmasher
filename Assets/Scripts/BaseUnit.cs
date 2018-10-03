@@ -112,6 +112,8 @@ public class BaseUnit : MonoBehaviour
 
 
 
+    private AudioManager audioManager;
+
     private SoundBoard soundBoard;
     private AudioSource[] unitAudioSources;
 
@@ -123,6 +125,8 @@ public class BaseUnit : MonoBehaviour
         gameController = GameObject.FindWithTag("GameController").GetComponent<GameController>();
         resourceController = GameObject.FindWithTag("GameController").GetComponent<ResourceController>();
         receiveAttackGO = transform.GetChild(1).gameObject;
+
+        audioManager = AudioManager.instance;
         unitAudioSources = GetComponents<AudioSource>();
         soundBoard = GameObject.FindWithTag("SoundController").GetComponent<SoundBoard>();
     }
@@ -332,7 +336,7 @@ public class BaseUnit : MonoBehaviour
     private void Death()
     {
         unitAnimator.SetTrigger("Death");
-        soundBoard.UnitExplodeSound(ref unitAudioSources[1]);
+        audioManager.PlaySound("Explosion2");
         Invoke("Kill", 2f);
     }
 

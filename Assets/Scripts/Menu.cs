@@ -23,7 +23,7 @@ public class Menu : MonoBehaviour
     }
     public void Play()
     {
-        SceneManager.LoadScene("Game scene Bill");
+        SceneManager.LoadScene("SampleScene");
         audioManager.PlaySound("ButtonSelect");
     }
     public void Options()
