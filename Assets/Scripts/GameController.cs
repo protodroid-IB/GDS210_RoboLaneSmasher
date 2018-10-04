@@ -60,9 +60,15 @@ public class GameController : MonoBehaviour
 
         Screen.sleepTimeout = SleepTimeout.NeverSleep;
 
-        audioManager = AudioManager.instance;
+        
 
         Time.timeScale = 1f;
+    }
+
+
+    private void Start()
+    {
+        audioManager = AudioManager.instance;
     }
 
 
@@ -231,7 +237,8 @@ public class GameController : MonoBehaviour
 
     public void ButtonSelectSound(int inNum)
     {
-        audioManager.PlaySound("ButtonSelect" + inNum.ToString());
+        Debug.Log(audioManager);
+        audioManager.PlaySound("ButtonSelect" + inNum);
     }
 
     public void AdvanceWeightClassSound()
