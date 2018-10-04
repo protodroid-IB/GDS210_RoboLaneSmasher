@@ -582,16 +582,16 @@ MonoBehaviour:
   raycastOrigin: {fileID: 4255740309278204}
   raycastRange: 10
   stoppingDistance: 0.15
-  attackingRange: 2.5
+  attackingRange: 3
   attackAnimation: {fileID: 7400000, guid: 87753bcdff300db44a69429483e96da0, type: 2}
-  maxHealth: 10
+  maxHealth: 420
   moveSpeed: 1.5
-  damagePerHit: 50
-  hitPerSecond: 1
-  buildTime: 2
-  buildCost: 25
-  scrapDrop: 25
-  expDrop: 100
+  damagePerHit: 90
+  hitPerSecond: 0.9
+  buildTime: 5
+  buildCost: 115
+  scrapDrop: 155
+  expDrop: 275
 --- !u!114 &114981459810012968
 MonoBehaviour:
   m_ObjectHideFlags: 1

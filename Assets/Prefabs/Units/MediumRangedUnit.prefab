@@ -584,14 +584,14 @@ MonoBehaviour:
   stoppingDistance: 0.15
   attackingRange: 2.5
   attackAnimation: {fileID: 7400000, guid: 87753bcdff300db44a69429483e96da0, type: 2}
-  maxHealth: 10
+  maxHealth: 150
   moveSpeed: 1.5
-  damagePerHit: 50
+  damagePerHit: 45
   hitPerSecond: 1
-  buildTime: 2
-  buildCost: 25
-  scrapDrop: 25
-  expDrop: 100
+  buildTime: 3.5
+  buildCost: 70
+  scrapDrop: 80
+  expDrop: 170
 --- !u!114 &114981459810012968
 MonoBehaviour:
   m_ObjectHideFlags: 1
