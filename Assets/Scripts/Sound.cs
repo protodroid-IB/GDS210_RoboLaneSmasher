@@ -4,18 +4,22 @@ using UnityEngine;
 [System.Serializable]
 public class Sound
 {
-    private AudioSource source;
 
+    private AudioSource source;
+    // text field for clip name
     public string clipName; 
 
     public AudioClip clip;
     public AudioMixerGroup audioMixerGroup;
 
+    // adds slider to float
     [Range (0f,1f)]
     public float volume;
+    // adds float to slider
     [Range (0f,3f)]
     public float pitch;
 
+    // sets default sate for the bool
     public bool loop =  false;
     public bool playOnAwake = false;
     public bool oneShot = false;
@@ -25,10 +29,7 @@ public class Sound
 
     public float minDistance3Dsound = 1f, maxDistance3DSound = 5f;
 
-
-
-
-
+    // adds editable sections to the array 
     public void SetSource(AudioSource _source)
     {
         source = _source;
