@@ -127,6 +127,7 @@ public class ResourceController : MonoBehaviour
     public void AddPlayerScrap(int inScrap)
     {
         playerScrap += inScrap;
+        gameController.TrackScrapEarned(inScrap);
         UpdateScrapUI();
     }
 
@@ -196,6 +197,8 @@ public class ResourceController : MonoBehaviour
     public void AddPlayerExp(int inExp)
     {
         playerExp += inExp;
+
+        gameController.TrackExperienceGained(inExp);
 
         if (playerExp >= playerRequiredExp) playerExp = playerRequiredExp;
 
@@ -309,4 +312,8 @@ public class ResourceController : MonoBehaviour
         AddPlayerScrap(scrapOngoingIncome);
         AddEnemyScrap(scrapOngoingIncome);
     }
+
+
+
+    
 }

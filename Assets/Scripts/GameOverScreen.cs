@@ -12,7 +12,7 @@ public class GameOverScreen : MonoBehaviour
     private GameObject gameOverGO;
 
     [SerializeField]
-    private TextMeshProUGUI scoreValue, battleConditionValue;
+    private TextMeshProUGUI battleConditionValue;
     
 
 
@@ -20,14 +20,12 @@ public class GameOverScreen : MonoBehaviour
     {
         GameOver();
         battleConditionValue.text = "YOU WIN!!!";
-        scoreValue.text = "100";
     }
 
     public void GameOverEnemyWins()
     {
         GameOver();
         battleConditionValue.text = "YOU LOSE!!!";
-        scoreValue.text = "100";
     }
 
     private void GameOver()

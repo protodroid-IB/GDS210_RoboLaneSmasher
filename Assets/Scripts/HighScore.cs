@@ -13,17 +13,15 @@ public class HighScore : MonoBehaviour
     void Start()
     {
         highScore.text = PlayerPrefs.GetInt("HighScore", 0).ToString();
-        
-    }
-    public void PlayerScore()
-    {
-        int number = Random.Range(100, 7000);
-        score.text = number.ToString();
 
-        if (number > PlayerPrefs.GetInt("HighScore", 0))
+    }
+
+    public void PlayerScore(int inScore)
+    {
+        if (inScore > PlayerPrefs.GetInt("HighScore", 0))
         {
-            PlayerPrefs.SetInt("HighScore", number);
-            highScore.text = number.ToString();
+            PlayerPrefs.SetInt("HighScore", inScore);
+            highScore.text = inScore.ToString();
         }       
     }
 

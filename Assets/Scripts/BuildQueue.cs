@@ -180,12 +180,14 @@ public class BuildQueue : MonoBehaviour
 
     private void CreateTheUnit()
     {
+       
         GameObject newUnitGO = Instantiate(buildQueue[0].prefab, buildQueue[0].position, buildQueue[0].rotation, buildQueue[0].parent);
 
         if (gameObject.tag == "Player")
         {
             gameController.AddPlayerUnit(newUnitGO);
             newUnitGO.GetComponent<BaseUnit>().SetCommander(Commander.Player);
+            gameController.TrackUnitsDeployed();
         }
         else
         {

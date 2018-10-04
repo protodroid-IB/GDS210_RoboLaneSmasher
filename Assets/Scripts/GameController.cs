@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class GameController : MonoBehaviour
 {
@@ -24,12 +25,38 @@ public class GameController : MonoBehaviour
 
     private AudioManager audioManager;
 
+    // SCORING VARIABLES
+    private HighScore highscore;
+
+    [SerializeField]
+    private TextMeshProUGUI scoreComponent;
+    private int playerScore = 0;
+
+    private bool scoreCalculated = false;
+
+    private float gameTime = 0;
+    private int totalScrapEarned = 0;
+    private int totalExperienceGained = 0;
+    private int totalUnitsDeployed = 0;
+
+    [SerializeField]
+    private int advanceWeightClassScoringBonus = 500, victoryBonus = 1000;
+    private bool vicotrious = false;
+
+    private int advanceClassBonus = 0;
+
+    [SerializeField]
+    private float toNormaliseTimeForScore = 5000;
+
+
+
 
     // Use this for initialization
     void Awake ()
     {
         gameOverScreen = GetComponent<GameOverScreen>();
         gameStartScreen.SetActive(true);
+        highscore = GetComponent<HighScore>();
 
         audioManager = AudioManager.instance;
 
@@ -37,11 +64,10 @@ public class GameController : MonoBehaviour
     }
 
 
-
-
     private void Update()
     {
-
+        TrackBattleTime();
+        //Debug.Log("GAME TIME: " + gameTime + "\tSCRAP COUNT: " + totalScrapEarned + "\tEXP GAINED: " + totalExperienceGained);
     }
 
 
@@ -73,6 +99,7 @@ public class GameController : MonoBehaviour
         if(inCommander == Commander.Player)
         {
             gameOverScreen.GameOverPlayerWins();
+            vicotrious = true;
         }
         else
         {
@@ -80,11 +107,20 @@ public class GameController : MonoBehaviour
         }
 
         currentGameState = GameState.End;
+        CalculateScore();
+        SetPlayerScore();
     }
 
     public int GetPlayerScore()
     {
-        return 0;
+        return playerScore;
+    }
+
+
+    private void SetPlayerScore()
+    {
+        scoreComponent.text = GetPlayerScore().ToString();
+        highscore.PlayerScore(playerScore);
     }
     
 
@@ -108,10 +144,12 @@ public class GameController : MonoBehaviour
         if(playerWeightClass == WeightClass.Light)
         {
             playerWeightClass = WeightClass.Medium;
+            advanceClassBonus += advanceWeightClassScoringBonus;
         }
         else if(playerWeightClass == WeightClass.Medium)
         {
             playerWeightClass = WeightClass.Heavy;
+            advanceClassBonus += advanceWeightClassScoringBonus;
         }
     }
 
@@ -197,6 +235,48 @@ public class GameController : MonoBehaviour
     public void AdvanceWeightClassSound()
     {
         audioManager.PlaySound("Upgrade2");
+    }
+
+
+
+
+
+    private void TrackBattleTime()
+    {
+        if(currentGameState == GameState.InGame)
+        {
+            gameTime += Time.deltaTime;
+        }
+    }
+
+
+    public void TrackScrapEarned(int inScrap)
+    {
+        totalScrapEarned += inScrap;
+    }
+
+
+    public void TrackExperienceGained(int inExp)
+    {
+        totalExperienceGained += inExp;
+    }
+
+
+    public void TrackUnitsDeployed()
+    {
+        totalUnitsDeployed++;
+    }
+
+
+    public int CalculateScore()
+    {
+        playerScore = (int)(((float)totalScrapEarned + ((float)totalExperienceGained / 2f)) * (1f - (gameTime / toNormaliseTimeForScore)) + advanceClassBonus);
+
+        if (vicotrious) playerScore += victoryBonus;
+
+
+        Debug.Log("PLAYERSCORE: " + playerScore);
+        return playerScore;
     }
 }
 
