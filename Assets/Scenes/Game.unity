@@ -1129,7 +1129,7 @@ MonoBehaviour:
   spawnPos: {fileID: 1860926158}
   unitsInHierarchy: {fileID: 940243546}
   minTimeBetweenUnits: 1
-  maxTimeBetweenUnits: 5
+  maxTimeBetweenUnits: 8
 --- !u!114 &91253617
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8057,8 +8057,8 @@ MonoBehaviour:
   enemyBase: {fileID: 1001827246}
   gameStartScreen: {fileID: 281418204}
   scoreComponent: {fileID: 463733855}
-  advanceWeightClassScoringBonus: 500
-  victoryBonus: 1000
+  advanceWeightClassScoringBonus: 1000
+  victoryBonus: 5000
   toNormaliseTimeForScore: 5000
 --- !u!4 &1473817449
 Transform:
@@ -8084,12 +8084,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a8e03aaf5e39ea4c80b17f0ae074e00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerStartScrap: 500
-  enemyStartScrap: 350
-  scrapOngoingIncome: 10
+  playerStartScrap: 200
+  enemyStartScrap: 100
+  scrapOngoingIncome: 5
   scrapIncomeTime: 5
-  advanceToMediumExp: 1000
-  advanceToHeavyExp: 3000
+  advanceToMediumExp: 700
+  advanceToHeavyExp: 2000
   scrapValue: {fileID: 43556051}
   expValue: {fileID: 879675383}
   advanceWeightClassIcon: {fileID: 1211615248}

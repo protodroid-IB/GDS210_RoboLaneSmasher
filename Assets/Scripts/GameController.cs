@@ -58,6 +58,8 @@ public class GameController : MonoBehaviour
         gameStartScreen.SetActive(true);
         highscore = GetComponent<HighScore>();
 
+        Screen.sleepTimeout = SleepTimeout.NeverSleep;
+
         audioManager = AudioManager.instance;
 
         Time.timeScale = 1f;
