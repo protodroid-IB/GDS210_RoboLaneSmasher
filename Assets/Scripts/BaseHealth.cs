@@ -1,20 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-/* 
-    SCRIPT AUTHOR/S:
-    William Roberts with additions by Laurence Valentini
 
-    SCRIPT DESCRIPTION: 
-    This script should be used to easily find and play specific sound effects. It should stay persistent throughout all scenes.
 
-    To use this:
-    // AudioManager audiomanager;
-    // in start method { audiomanager = AudioManager.instance; }
-    // to play sound audioManager.PlaySound("Sound Name")
-    // or to play sound from a specific audiosource audioManager.PlaySound("Sound Name", audiosource)
 
-*/
 public class BaseHealth : MonoBehaviour
 {
     private GameController gameController;
