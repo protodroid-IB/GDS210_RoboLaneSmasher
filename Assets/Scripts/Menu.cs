@@ -14,7 +14,7 @@ public class Menu : MonoBehaviour
     [SerializeField]
     GameObject optionsPanel;
 
-    AudioManager audioManager;
+    AudioManager audioManager; 
 
     public AudioMixer audioMixer;
 
